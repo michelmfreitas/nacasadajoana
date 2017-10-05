@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f0efe4;
+    height: 100%;
+}
+
+header {
+    text-align: right;
+    margin: 40px 0 20px 0;
+}
+
+header img {
+    width: 50%;
+}
+
+img {
+    max-width: 100%;
+    width: auto;
+}
+
+#quadro {
+    margin-top: 115px;
+    /*width: 100%;
+    padding: 20px;
+    height: 500px;*/
+    background: #FFFFFF;
+    width: 100%;
+    position: relative;
+    /* calcular aspect-ratio 3:4
+    B / (A / 100) = C% 
+    padding-top: calc( 4 / (3/100))%; */
+    padding-top: 133.333333%;
+}
+
+.content {
+    position: absolute;
+    top: 5%;
+    left: 8%;
+    bottom: 5%;
+    right: 8%;
+    line-height: 32px;
+    font-size: 32px;
+    border: 1px dashed #999999;
+    display: block;
+}
+
+.paleta {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.paleta span {
+    display: block;
+}
+
+.color-item,
+.text-item {
+    width: 100%;
+    height: 23px;
+    cursor: pointer;
+}
+
+.bg-custom span,
+.paleta span {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+
+/* paleta grayscale */
+
+.black {
+    background-color: #000000 !important;
+}
+
+.grey-60 {
+    background: #666666 !important;
+}
+
+.grey-40 {
+    background: #999999 !important;
+}
+
+.grey-20 {
+    background: #CCCCCC !important;
+}
+
+.white {
+    background: #FFFFFF !important;
+}
+
+
+/* paleta quente */
+
+.hot-1 {
+    background: #b92c2c !important;
+}
+
+.hot-2 {
+    background: #df4a4a !important;
+}
+
+.hot-3 {
+    background: #f58345 !important;
+}
+
+.hot-4 {
+    background: #ffcb05 !important;
+}
+
+.hot-5 {
+    background: #fff200 !important;
+}
+
+
+/* paleta fria */
+
+.cold-1 {
+    background: #23506e !important;
+}
+
+.cold-2 {
+    background: #4381aa !important;
+}
+
+.cold-3 {
+    background: #79bae6 !important;
+}
+
+.cold-4 {
+    background: #46b09c !important;
+}
+
+.cold-5 {
+    background: #7bdac8 !important;
+}
+
+
+/* paleta flamingo */
+
+.flamingo-1 {
+    background: #c73b69 !important;
+}
+
+.flamingo-2 {
+    background: #ef5c8d !important;
+}
+
+.flamingo-3 {
+    background: #ffa1c0 !important;
+}
+
+.flamingo-4 {
+    background: #ffcb05 !important;
+}
+
+.flamingo-5 {
+    background: #000000 !important;
+}
+
+
+/* paleta nordic */
+
+.nordic-1 {
+    background: #ffa1c0 !important;
+}
+
+.nordic-2 {
+    background: #db9c67 !important;
+}
+
+.nordic-3 {
+    background: #ffd0a8 !important;
+}
+
+.nordic-4 {
+    background: #cccccc !important;
+}
+
+.nordic-5 {
+    background: #23506e !important;
+}
+
+
+/* paleta default */
+
+.default-1 {
+    background: #000000 !important;
+}
+
+.default-2 {
+    background: #999999 !important;
+}
+
+.default-3 {
+    background: #cccccc !important;
+}
+
+.default-4 {
+    background: #ffffff !important;
+}
+
+.default-5 {
+    background: #db9c67 !important;
+}
+
+.default-6 {
+    background: #ffd0a8 !important;
+}
+
+.default-7 {
+    background: #df4a4a !important;
+}
+
+.default-8 {
+    background: #f58345 !important;
+}
+
+.default-9 {
+    background: #ffcc66 !important;
+}
+
+.default-10 {
+    background: #46b09c !important;
+}
+
+.default-11 {
+    background: #23506e !important;
+}
+
+.default-12 {
+    background: #ef5c8d !important;
+}
+
+h4 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #999999;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.col20 {
+    width: 20% !important;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col25 {
+    width: 20% !important;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col30 {
+    width: 30% !important;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#fonte {
+    background: #f8f8f8;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    width: 70%;
+}
+
+#font-size {
+    background: #f8f8f8;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    width: 29%;
+    margin-left: 1%;
+    float: right;
+}
+
+.btn-align {
+    margin: 0 !important;
+    width: 33.3333%;
+    float: left;
+    border: 1px solid #cccccc;
+    background: #f8f8f8;
+    color: #999999;
+    padding: 10px;
+}
+
+.btn-align :nth-child(2) {
+    border-left: 0;
+    border-right: 0;
+}
+
+.btn-align i.icone-menor {
+    vertical-align: super;
+    font-size: 8px;
+    margin-left: -7px;
+}
+
+.bg-item {
+    width: 100%;
+    height: 50px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.geometrico {
+    background: #36c !important;
+    background: linear-gradient(115deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 0 0, linear-gradient(245deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 0 0, linear-gradient(115deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 7px -15px, linear-gradient(245deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 7px -15px, #36c !important;
+    background-size: 15px 30px !important;
+}
+
+.bolinhas {
+    background-color: #001 !important;
+    background-image: radial-gradient(white 15%, transparent 16%), radial-gradient(white 15%, transparent 16%) !important;
+    background-size: 60px 60px !important;
+    background-position: 0 0, 30px 30px !important;
+}
+
+.quadrados {
+    background-color: #eee !important;
+    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(-45deg, black 25%, transparent 25%, transparent 75%, black 75%, black) !important;
+    background-size: 60px 60px !important;
+}
+
+.ancoras {
+    background: radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%), radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%), radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%), radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%), radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221, 51, 85, 0) 31%), radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%) 50px 50px, radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%) 50px 50px, radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221, 51, 85, 0) 31%) 50px 50px !important;
+    background-color: #b03 !important;
+    background-size: 100px 100px !important;
+}
+
+.flechas {
+    background: linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px, linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px), linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px, #92baac 68px, #92baac 113px, transparent 113px, transparent 158px, #92baac 158px) !important;
+    background-color: #e1ebbd !important;
+    background-size: 128px 128px !important;
+}
+
+.margaridas {
+    background-color: silver !important;
+    background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent) !important;
+    background-size: 100px 50px !important;
+}
+
+.raio {
+    background: linear-gradient(324deg, #232927 4%, transparent 4%) -70px 43px, linear-gradient( 36deg, #232927 4%, transparent 4%) 30px 43px, linear-gradient( 72deg, #e3d7bf 8.5%, transparent 8.5%) 30px 43px, linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) -70px 43px, linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) -70px 23px, linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 30px 23px, linear-gradient(324deg, #232927 4%, transparent 4%) -20px 93px, linear-gradient( 36deg, #232927 4%, transparent 4%) 80px 93px, linear-gradient( 72deg, #e3d7bf 8.5%, transparent 8.5%) 80px 93px, linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) -20px 93px, linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) -20px 73px, linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 80px 73px !important;
+    background-color: #232927 !important;
+    background-size: 100px 100px !important;
+}
+
+.montanha {
+    background: linear-gradient(135deg, #ECEDDC 25%, transparent 25%) -50px 0, linear-gradient(225deg, #ECEDDC 25%, transparent 25%) -50px 0, linear-gradient(315deg, #ECEDDC 25%, transparent 25%), linear-gradient(45deg, #ECEDDC 25%, transparent 25%) !important;
+    background-size: 100px 100px !important;
+    background-color: #EC173A !important;
+}
+
+.folhas {
+    background-color: #fff !important;
+    background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#eee .1em, transparent .1em) !important;
+    background-size: 100% 1.2em !important;
+}
+
+.nuvens {
+    background: linear-gradient(#ffffff 50%, rgba(255, 255, 255, 0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255, 255, 255, 0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255, 255, 255, 0) 0) 55px 0 #48B !important;
+    background-size: 110px 200px !important;
+    background-repeat: repeat-x !important;
+}
+
+.botoes span {
+    font-size: 11px;
+    line-height: 13px;
+    float: left;
+    margin-left: 2px;
+    position: absolute;
+}
+
+.botoes input[type=checkbox] {
+    position: relative;
+    float: left;
+    top: 8px;
+    right: 2px;
+}
+
+.btn {
+    text-transform: uppercase;
+}
+
+.font-nosifer {
+    font-family: 'Nosifer', cursive;
+}
+
+.font-anton {
+    font-family: 'Anton', sans-serif;
+}
+
+.font-lobster {
+    font-family: 'Lobster', cursive;
+}
+
+
+/* tooltips */
+
+.close-tooltip {
+    background: #333333;
+    padding: 3px 7px;
+    border: none;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #FFF;
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    z-index: 999;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before,
+.tooltip.bs-tooltip-top .arrow::before {
+    border-top-color: #fdb813;
+    border-width: 10px 10px 0;
+    margin-left: -6px;
+}
+
+.tooltip-inner {
+    background-color: #fdb813;
+    padding: 30px 10px;
+    margin-top: -10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: orangered;
+}
+
+
+/* box */
+
+.box {
+    width: 150px;
+    height: auto;
+    margin: 16px;
+    position: absolute;
+    border: 1px dotted #999;
+    cursor: move;
+}
+
+.ui-rotatable-handle {
+    background: url("https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/rotate.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: -16px;
+    right: -16px;
+}
+
+
+/*.ui-rotatable-handle-sw {
+    bottom: -27px;
+    left: -27px;
+}
+
+.ui-rotatable-handle-nw {
+    top: -27px;
+    left: -27px;
+}
+
+.ui-rotatable-handle-se {
+    bottom: -27px;
+    right: -27px;
+}
+
+.ui-rotatable-handle-ne {
+    top: -16px;
+    right: -16px;
+}*/

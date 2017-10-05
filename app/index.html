@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Anton|Lobster|Nosifer" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/estilo.css" type="text/css">
+
+    <!--<script src="https://use.fontawesome.com/f4499b2d17.js"></script>-->
+    <script src="assets/js/font-awesome.js"></script>
+    <link rel="stylesheet" href="assets/css/font-awesome.css" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="assets/js/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/jquery.ui.rotatable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" type="text/css">
+
+    <!--<script type="text/javasctipt" src="https://cdnjs.com/libraries/popper.js" async></script>
+    <script type="text/javasctipt" src="https://cdnjs.com/libraries/tooltip.js" async></script>-->
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-6" id="conteudo-quadro">
+
+                <section id="quadro" data-toggle="tooltip" data-html="true" data-placement="top" title="Solte a imaginação e crie seu quadro personalizado! :)">
+                    <div class="content">
+                        <div class="box" data-target="1"><span>Dê um duplo clique aqui para começar.</span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="col-md-7 col-sm-6 ml-auto col-offset-1">
+
+                <header>
+                    <img src="assets/img/logo.jpg" alt="" title="" />
+                </header>
+
+
+                <h4>Texto</h4>
+                <div class="row barra-texto">
+
+                    <div class="col-md-4">
+                        <select name="fonte" id="fonte">
+                            <option value="font-nosifer" class="font-nosifer" checked>Nosifer</option>
+                            <option value="font-anton" class="font-anton">Anton</option>
+                            <option value="font-lobster" class="font-lobster">Lobster</option>
+                        </select>
+                        <select name="font-size" id="font-size">
+                                <option value="0">1</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                                <option value="4">5</option>
+                                <option value="5">6</option>
+                            </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn-align align-left"><i class="fa fa-align-left"></i></button>
+                        <button class="btn-align align-center"><i class="fa fa-align-center"></i></button>
+                        <button class="btn-align align-right"><i class="fa fa-align-right"></i></button>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="paleta">
+                            <div class="text-item default-1" data-color="default-1"></div>
+                            <div class="text-item default-2" data-color="default-2"></div>
+                            <div class="text-item default-3" data-color="default-3"></div>
+                            <div class="text-item default-4" data-color="default-4"></div>
+                            <div class="text-item default-5" data-color="default-5"></div>
+                            <div class="text-item default-6" data-color="default-6"></div>
+                        </div>
+                        <div class="paleta">
+                            <div class="text-item default-7" data-color="default-7"></div>
+                            <div class="text-item default-8" data-color="default-8"></div>
+                            <div class="text-item default-9" data-color="default-9"></div>
+                            <div class="text-item default-10" data-color="default-10"></div>
+                            <div class="text-item default-11" data-color="default-11"></div>
+                            <div class="text-item default-12" data-color="default-12"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn-align" style="width:100%;" title="Adicionar Texto" id="addButton">
+                            <i class=" fa fa-font" style="font-size:20px;"></i>
+                            <i class="fa fa-plus icone-menor"></i>
+                        </button>
+                    </div>
+
+
+                </div>
+
+                <br>
+
+                <h4>Fundo</h4>
+                <div class="row barra-fundo">
+
+                    <div class="col20 paleta"><span>PB</span></div>
+                    <div class="col20 paleta"><span>Quentes</span></div>
+                    <div class="col20 paleta"><span>Frias</span></div>
+                    <div class="col20 paleta"><span>Flamingo</span></div>
+                    <div class="col20 paleta"><span>Nordic</span></div>
+
+
+                    <div class="col20 paleta">
+                        <div class="color-item black" data-color="black"></div>
+                        <div class="color-item grey-60" data-color="grey-60"></div>
+                        <div class="color-item grey-40" data-color="grey-40"></div>
+                        <div class="color-item grey-20" data-color="grey-20"></div>
+                        <div class="color-item white" data-color="white"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item hot-1" data-color="hot-1"></div>
+                        <div class="color-item hot-2" data-color="hot-2"></div>
+                        <div class="color-item hot-3" data-color="hot-3"></div>
+                        <div class="color-item hot-4" data-color="hot-4"></div>
+                        <div class="color-item hot-5" data-color="hot-5"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item cold-1" data-color="cold-1"></div>
+                        <div class="color-item cold-2" data-color="cold-2"></div>
+                        <div class="color-item cold-3" data-color="cold-3"></div>
+                        <div class="color-item cold-4" data-color="cold-4"></div>
+                        <div class="color-item cold-5" data-color="cold-5"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item flamingo-1" data-color="flamingo-1"></div>
+                        <div class="color-item flamingo-2" data-color="flamingo-2"></div>
+                        <div class="color-item flamingo-3" data-color="flamingo-3"></div>
+                        <div class="color-item flamingo-4" data-color="flamingo-4"></div>
+                        <div class="color-item flamingo-5" data-color="flamingo-5"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item nordic-1" data-color="nordic-1"></div>
+                        <div class="color-item nordic-2" data-color="nordic-2"></div>
+                        <div class="color-item nordic-3" data-color="nordic-3"></div>
+                        <div class="color-item nordic-4" data-color="nordic-4"></div>
+                        <div class="color-item nordic-5" data-color="nordic-5"></div>
+                    </div>
+
+                </div>
+
+                <br>
+
+                <div class="row barra-fundo">
+
+                    <div class="col20 bg-custom">
+                        <span>Geométrico</span>
+                        <div class="bg-item geometrico" data-color="geometrico"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Bolinhas</span>
+                        <div class="bg-item bolinhas" data-color="bolinhas"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Quadrados</span>
+                        <div class="bg-item quadrados" data-color="quadrados"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Âncoras</span>
+                        <div class="bg-item ancoras" data-color="ancoras"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Margaridas</span>
+                        <div class="bg-item margaridas" data-color="margaridas"></div>
+                    </div>
+
+                </div>
+
+                <br />
+
+                <div class="row barra-fundo">
+
+                    <div class="col20 bg-custom">
+                        <span>Flechas</span>
+                        <div class="bg-item flechas" data-color="flechas"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Raio</span>
+                        <div class="bg-item raio" data-color="raio"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Montanha</span>
+                        <div class="bg-item montanha" data-color="montanha"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Folhas</span>
+                        <div class="bg-item folhas" data-color="folhas"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Nuvens</span>
+                        <div class="bg-item nuvens" data-color="nuvens"></div>
+                    </div>
+
+                </div>
+
+                <br />
+
+                <div class="row botoes">
+                    <div class="col-md-3">
+                        <button class="btn btn-block btn-limpar">Limpar</button>
+                    </div>
+                    <div class="col-md-3 ml-auto" style="padding-top:5px;">
+                        <input type="checkbox" name="termos" class="termos">
+                        <span>Li e aceitei os termos e regulamento de compra</span>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-block btn-success" id="bt-enviar">Continuar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="imagem-final"></div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INSERIR TEXTO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea maxlength="255" class="form-control" rows="3" placeholder="Digite seu texto aqui" id='novo-texto'></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-primary" id='bt-addTexto'>INSERIR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript ">
+        $(document).ready(function() {
+
+            alvoAtivo = 1;
+
+            $(".color-item").click(function() {
+                let cor = $(this).attr("data-color");
+                $("#quadro").removeAttr('class');
+                $("#quadro").addClass(cor);
+            });
+
+            $(".bg-item").click(function() {
+                let bg = $(this).attr("data-color");
+                $("#quadro").removeAttr('class');
+                $("#quadro").addClass(bg);
+            });
+
+            $(".text-item").click(function() {
+                console.log(alvoAtivo);
+                let text = $(this).attr("data-color");
+                let cor = $("." + text).css('background-color');
+                $(".box[data-target='" + alvoAtivo + "']").css("color", cor);
+            });
+
+            $(".align-left").click(function() {
+                $(".box[data-target='" + alvoAtivo + "']").css('text-align', "left");
+            });
+
+            $(".align-center").click(function() {
+                $(".box[data-target='" + alvoAtivo + "']").css('text-align', "center");
+            });
+
+            $(".align-right").click(function() {
+                $(".box[data-target='" + alvoAtivo + "']").css('text-align', "right");
+            });
+
+
+            $("#bt-enviar").click(function() {
+                if ($("input[type=checkbox]:checked").length != 1) {
+                    alert('Você deve aceitar os termos e regulamentos da compra para continuar.');
+                    return false;
+                } else {
+                    let quadro = $("#conteudo-quadro").html();
+
+                    //transforma a DIV #conteudo-quadro em uma imagem.
+                    html2canvas($('#conteudo-quadro'), {
+                        onrendered: function(canvas) {
+                            var imgData = canvas.toDataURL('image/png');
+                            /*var pdf = new jsPDF('p', 'mm');
+                            pdf.addImage(imgData, 'PNG', 10, 10);
+                            pdf.save('test.pdf');*/
+
+                            console.log(imgData);
+                            $("#imagem-final").html("<img src='" + imgData + "'>");
+                        }
+                    });
+
+                }
+            });
+
+            $(".btn-limpar").on("click", function() {
+                $("#quadro").removeAttr('class');
+                $(".content").removeAttr('style');
+                $(".content").html('');
+            });
+
+            $("#fonte").on("change", function() {
+                let fontes = [
+                    "font-nosifer",
+                    "font-anton",
+                    "font-lobster"
+                ];
+                fontes.forEach(function(element) {
+                    $(".box[data-target='" + alvoAtivo + "']").removeClass(element);
+                }, this);
+                $(".box[data-target='" + alvoAtivo + "']").addClass($(this).val());
+            });
+
+            $("#font-size").on("change", function() {
+                let tamanho = [
+                    "14px", "18px", "24px", "32px", "42px", "56px"
+                ];
+                console.log($(this).val(), alvoAtivo);
+                $(".box[data-target='" + alvoAtivo + "']").css("font-size", tamanho[$(this).val()]);
+                $(".box[data-target='" + alvoAtivo + "']").css("line-height", tamanho[$(this).val()]);
+            });
+
+            $(".content").on("dblclick", ".box", function() {
+                var obj = $(this).attr('data-target');
+                alvoAtivo = alteraAlvoAtivo(obj);
+                $("#novo-texto").val($(".box[data-target='" + obj + "'] span").html());
+                $('#exampleModal').modal('show');
+            });
+
+            $('#bt-addTexto').on("click", function() {
+                let novotexto = $("#novo-texto").val();
+                novotexto = novotexto.replace(/\n\r?/g, '<br />');
+
+                $(".box").css('border-color', "#FFF");
+                $(this).css('border-color', "#999");
+
+                if ($(".box[data-target=" + alvoAtivo + "]").length === 0) {
+                    let novoBox = "<div class='box' data-target='" + alvoAtivo + "'>" + novotexto + "</div>";
+                    $(".content").append(novoBox);
+                    $(".box[data-target='" + alvoAtivo + "']").draggable({
+                        cancel: ".ui-rotatable-handle",
+                        containment: "parent"
+                    });
+                } else {
+                    $(".box[data-target=" + alvoAtivo + "]").html(novotexto);
+                }
+                $('#exampleModal').modal('hide');
+                $("#novo-texto").val('');
+            });
+
+            $(".content").on("click", ".box", function() {
+                var obj = $(this).attr('data-target');
+                alvoAtivo = obj;
+                $(".box").css('border-color', "#FFF");
+                $(this).css('border-color', "#999");
+                console.log("Alvo ativo: " + alvoAtivo);
+                console.log("ObJ: " + obj);
+            });
+
+            $("#addButton").on("click", function() {
+                let novoBox = $(".box").length + 1;
+                alvoAtivo++;
+                $('#exampleModal').modal('show');
+            });
+
+            function alteraAlvoAtivo(alvoAtual) {
+                return alvoAtivo = alvoAtual++;
+            }
+
+            function inserirNovoBox(texto) {
+                var lastBox = $(".box").attr("data-target");
+                console.log(lastBox);
+            }
+
+            $('[data-toggle="tooltip"]').tooltip('show');
+
+
+            $('.box').draggable({
+                cancel: ".ui-rotatable-handle",
+                containment: "parent",
+                stop: function() {
+                    console.log('evento após o draggable');
+                }
+            });
+
+            /*$(".box").bind('dragstop', function() {
+                alert('teste');
+            });*/
+
+
+            // Prepare extra handles
+            var nw = $("<div>", {
+                class: "ui-rotatable-handle"
+            });
+            var ne = nw.clone();
+            var se = nw.clone();
+
+            //You can also combine this plugin with the jQuery UI built-in resizable() and draggable(), although the latter works best when applied to a container with the rotatable inside it. See the Demo page for some examples.
+
+            // Assign Draggable
+            /*$('.box').draggable({
+                cancel: ".ui-rotatable-handle",
+                containment: "parent"
+            });*/
+            // Assign Rotatable
+            $('.box').resizable().rotatable();
+            // Assign coordinate classes to handles
+            /*$('.box div.ui-rotatable-handle').addClass("ui-rotatable-handle-sw");
+            nw.addClass("ui-rotatable-handle-nw");
+            ne.addClass("ui-rotatable-handle-ne");
+            se.addClass("ui-rotatable-handle-se");
+            // Assign handles to box
+            $(".box").append(nw, ne, se);
+            // Assigning bindings for rotation event
+            $(".box div[class*='ui-rotatable-handle-']").bind("mousedown", function(e) {
+                $('.box').rotatable("instance").startRotate(e);
+            });*/
+        });
+    </script>
+
+
+</body>
+
+</html>

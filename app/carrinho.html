@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+    <script src="assets/js/font-awesome.js"></script>
+    <link rel="stylesheet" href="assets/css/font-awesome.css" type="text/css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/estilo.css" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script src="assets/js/jquery.mask.min.js"></script>
+
+    <script src="assets/js/carrinho.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container carrinho">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <h3>Carrinho de Compras</h3>
+
+                <table id="tbl-carrinho">
+                    <tr class="cabecalho">
+                        <th style="width:55%;">Produto</th>
+                        <th style="width:15%;">Quantidade</th>
+                        <th style="width:15%;">Valor Unitário</th>
+                        <th style="width:15%;">Valor Total</th>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="frete">
+                    <p>Para continuar, digite o CEP: <input type="text" name="cep" id="cep" value="" placeholder="Digite aqui o seu CEP" /><button id="calcula_frete"><i class="fa fa-search"></i></button>
+                    </p>
+                    <p style="padding: 0 20px 35px 20px;">Escolha o frete:
+                        <span>
+                            <input type="radio" name="cep" value="pac" /> <strong>PAC:</strong> R$ <i class="preco_pac">0,00</i><br>
+                            <input type="radio" name="cep" value="sedex" /> <strong>Sedex:</strong> R$ <i class="preco_sedex">0,00</i>
+                        </span>
+                    </p>
+                    <p style="padding-top:0;">
+                        Valor do frete: <strong>R$<span class="valor-frete">0,00</span></strong><br> Total do pedido: <strong>R$<span class="total-pedido">0,00</span></strong>
+                    </p>
+                    <p style="border:0; padding-top:0;"><button class="btn btn-success" id='bt-finalizar'>FINALIZAR COMPRA</button></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br><br><br>
+
+</body>
+
+<script type="text/javascript">
+</script>
+
+</html>

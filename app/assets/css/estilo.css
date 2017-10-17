@@ -6,6 +6,8 @@
 body {
     background: #f0efe4;
     height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
 }
 
 header {
@@ -264,9 +266,10 @@ h4 {
 
 #fonte {
     background: #f8f8f8;
-    padding: 10px;
+    padding: 11px;
     border: 1px solid #cccccc;
     width: 70%;
+    font-size: 15px;
 }
 
 #font-size {
@@ -327,9 +330,10 @@ h4 {
 }
 
 .ancoras {
-    background: radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%), radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%), radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%), radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%), radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221, 51, 85, 0) 31%), radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187, 0, 51, 0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%) 50px 50px, radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221, 51, 85, 0) 46%) 50px 50px, radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221, 51, 85, 0) 31%) 50px 50px !important;
-    background-color: #b03 !important;
-    background-size: 100px 100px !important;
+    background-image: url('../img/bg-ancora.jpg') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
 }
 
 .flechas {
@@ -387,16 +391,44 @@ h4 {
     text-transform: uppercase;
 }
 
-.font-nosifer {
-    font-family: 'Nosifer', cursive;
+.font-1 {
+    font-family: 'Amatic SC', cursive;
 }
 
-.font-anton {
-    font-family: 'Anton', sans-serif;
+.font-2 {
+    font-family: 'Arbutus Slab', serif;
 }
 
-.font-lobster {
-    font-family: 'Lobster', cursive;
+.font-3 {
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.font-4 {
+    font-family: 'Boogaloo', cursive;
+}
+
+.font-5 {
+    font-family: 'Bowlby One SC', cursive;
+}
+
+.font-6 {
+    font-family: 'Bree Serif', serif;
+}
+
+.font-7 {
+    font-family: 'Capriola', sans-serif;
+}
+
+.font-8 {
+    font-family: 'Caveat', cursive;
+}
+
+.font-9 {
+    font-family: 'Pacifico', cursive;
+}
+
+.font-10 {
+    font-family: 'Shrikhand', cursive;
 }
 
 
@@ -474,3 +506,342 @@ h4 {
     top: -16px;
     right: -16px;
 }*/
+
+
+/* ################################ MOLDURAS ########################## */
+
+.img-parabens {
+    margin-top: 50px;
+}
+
+.texto-parabens {
+    margin-left: 45px;
+    margin-top: -40px;
+}
+
+.descricao {
+    text-align: center;
+    color: #333;
+    margin-top: 25px;
+}
+
+.descricao span.info {
+    text-decoration: underline;
+    font-weight: 300;
+    font-size: 14px;
+    color: #666;
+}
+
+.descricao span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.descricao span.preco {
+    margin-bottom: 15px;
+}
+
+.qtde {
+    display: inline;
+    font-size: 12px;
+}
+
+.qtde #quantidade {
+    float: right;
+    background: #f8f8f8;
+    padding: 10px;
+    border: 1px solid #cccccc;
+}
+
+.qtde span {
+    display: inline;
+    vertical-align: -webkit-baseline-middle;
+    color: #666;
+}
+
+.botoes {
+    text-align: right;
+}
+
+.botoes button {
+    margin: 0 10px;
+    margin-top: 30px;
+}
+
+.botoes button:last-child {
+    margin-right: 0;
+}
+
+.btn-success {
+    background: #99cc66 !important;
+    border-color: #99cc66;
+}
+
+.papel.imgData img {
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.papel.imgData img:before,
+.papel.imgData img:after {
+    position: absolute;
+    width: 40%;
+    height: 10px;
+    content: ' ';
+    left: 12px;
+    bottom: 12px;
+    background: transparent;
+    -webkit-transform: skew(-5deg) rotate(-5deg);
+    -moz-transform: skew(-5deg) rotate(-5deg);
+    -ms-transform: skew(-5deg) rotate(-5deg);
+    -o-transform: skew(-5deg) rotate(-5deg);
+    transform: skew(-5deg) rotate(-5deg);
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.papel.imgData img:after {
+    left: auto;
+    right: 12px;
+    -webkit-transform: skew(5deg) rotate(5deg);
+    -moz-transform: skew(5deg) rotate(5deg);
+    -ms-transform: skew(5deg) rotate(5deg);
+    -o-transform: skew(5deg) rotate(5deg);
+    transform: skew(5deg) rotate(5deg);
+}
+
+.moldura-preta.imgData img {
+    border: 7px solid #000000;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.moldura-amarela.imgData img {
+    border: 7px solid #ffd801;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.moldura-vermelha.imgData img {
+    border: 7px solid #a02424;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.moldura-crua.imgData img {
+    border: 7px solid #e7c9a4;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.moldura-branca.imgData img {
+    border: 7px solid #FFFFFF;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.imgData img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.imgData:hover img {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+
+/* ########################## CARRINHO DE COMPRAS ########################## */
+
+.carrinho,
+.cadastro,
+.pagamento {
+    background: #FFFFFF;
+    margin-top: 70px;
+    border-top: 1px solid orangered;
+    padding: 15px 50px;
+}
+
+.carrinho h3,
+.cadastro h3,
+.pagamento h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.carrinho table {
+    border: 1px solid orangered;
+    margin-bottom: 20px;
+}
+
+.carrinho .cabecalho {
+    border-bottom: 1px solid orangered;
+}
+
+.carrinho table tr {
+    padding: 5px 10px;
+}
+
+.carrinho table tr th {
+    color: orangered;
+    padding: 5px 10px;
+}
+
+.carrinho table tr td {
+    padding: 10px;
+}
+
+.carrinho .imgData {
+    width: 80px;
+    height: auto;
+    float: left;
+    margin-right: 20px;
+}
+
+.carrinho input[type=number],
+.carrinho input[type=text] {
+    background: #f8f8f8;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    width: 60%;
+}
+
+.carrinho input[type=text] {
+    width: 40%;
+    margin-left: 10px;
+}
+
+.carrinho .produto {
+    border-bottom: 1px dashed #e9e9e9;
+}
+
+.produto tr:last-child {
+    border: none !important;
+}
+
+.total-carrinho {
+    background-color: #e9e9e9;
+}
+
+.total-carrinho td {
+    text-align: right !important;
+    padding: 20px 7% 20px 0 !important;
+}
+
+.carrinho .col-produto {
+    font-size: 14px;
+    color: #999;
+    padding-top: 15px;
+}
+
+.carrinho .col-produto .titulo-produto {
+    color: #666;
+    font-weight: bold;
+    display: block;
+}
+
+.carrinho .col-produto a {
+    text-decoration: underline;
+    color: orangered;
+    display: block;
+}
+
+.frete {
+    color: #999;
+    font-size: 14px;
+}
+
+.frete p {
+    text-align: right;
+    padding: 20px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.frete p span {
+    display: block;
+    float: right;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.preco_pac,
+.preco_sedex {
+    font-style: normal;
+}
+
+.total-pedido,
+.valor-frete {
+    margin-left: 3px !important;
+}
+
+#calcula_frete {
+    background: none;
+    border: none;
+    position: relative;
+    right: 25px;
+}
+
+
+/* ########################## CADASTRO ########################## */
+
+.cadastro h3 {
+    color: orangered;
+    margin: 30px 0 10px 0;
+}
+
+.cadastro h6 {
+    font-size: 14px;
+    margin-bottom: 50px;
+}
+
+#frmCadastro {
+    margin-top: 30px;
+}
+
+#frmCadastro input {
+    border-radius: 0;
+    background: #FFFFFF;
+}
+
+#frmCadastro input[type=text],
+#frmCadastro input[type=email] {
+    width: 100%;
+    font-size: 13px;
+    color: #999;
+}
+
+#frmCadastro .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    margin: 0;
+}
+
+#frmCadastro #bt-cadastrar {
+    width: 15%;
+    text-transform: uppercase;
+    float: right;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+#frmCadastro legend {
+    margin: 30px 0 50px 0;
+    color: orangered;
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid orangered;
+    padding-bottom: 5px;
+}

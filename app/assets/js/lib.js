@@ -63,17 +63,40 @@ $(document).ready(function() {
         } else {
             let quadro = $("#conteudo-quadro").html();
 
+            //retirar as bordas dos boxes
+            $("#quadro").css('border', 'none');
+            $(".content").css('border', 'none');
+            $(".box").css('border', 'none');
+
+            exportar();
             //transforma a DIV #conteudo-quadro em uma imagem.
-            html2canvas($('#conteudo-quadro'), {
+            html2canvas($('#quadro'), {
                 onrendered: function(canvas) {
-                    var imgData = canvas.toDataURL('image/png');
+                    var imgData = canvas.toDataURL('image/png', 1.0);
                     /*var pdf = new jsPDF('p', 'mm');
                     pdf.addImage(imgData, 'PNG', 10, 10);
                     pdf.save('test.pdf');*/
 
-                    console.log(imgData);
-                    $("#imagem-final").html("<img src='" + imgData + "'>");
-                }
+                    img = new Image();
+                    img.src = imgData;
+                    img.onload = function() {
+                        localStorage.setItem('imagem', imgData);
+                        //console.log(img);
+                        //$("#teste").html(img);
+                        window.location.href = 'escolherMoldura.html';
+                        //alert('pronto.');
+                    }
+                    img.onerror = function() { alert('there was an image load error :('); };
+
+                    //console.log(imgData);
+
+
+                    //
+                },
+                //width: 1122.519685,
+                //height: 1587.401575,
+                letterRendering: true,
+
             });
 
         }
@@ -169,6 +192,83 @@ $(document).ready(function() {
             console.log('evento após o draggable');
         }
     });
+
+    function exportar() {
+        var canvasShiftImg = function(img, shiftAmt, scale, pageHeight, pageWidth) {
+            var c = document.createElement('canvas'),
+                ctx = c.getContext('2d'),
+                shifter = Number(shiftAmt || 0),
+                scaledImgHeight = img.height * scale,
+                scaledImgWidth = img.width * scale;
+
+            ctx.canvas.height = pageHeight;
+            ctx.canvas.width = pageWidth;
+            ctx.drawImage(img, 0, shifter, scaledImgWidth, scaledImgHeight)
+
+            return c;
+        };
+
+        var canvasToImg = function(canvas, loaded, error) {
+            var dataURL = canvas.toDataURL('image/png'),
+                img = new Image();
+            img.onload = loaded;
+            img.onerror = error;
+            img.src = dataURL;
+        };
+
+        var imageToPdf = function() {
+            // can't pass any parameters or else "this" won't be the img element
+            var img = this,
+                pdf = new jsPDF('l', 'px'),
+                pdfInternals = pdf.internal,
+                pdfPageSize = pdfInternals.pageSize,
+                pdfScaleFactor = pdfInternals.scaleFactor,
+                pdfPageWidth = pdfPageSize.width,
+                pdfPageHeight = pdfPageSize.height,
+                pdfPageWidthPx = pdfPageWidth * pdfScaleFactor,
+                pdfPageHeightPx = pdfPageHeight * pdfScaleFactor,
+
+                imgScaleFactor = Math.min(pdfPageWidthPx / img.width, 1),
+                imgScaledHeight = img.height * imgScaleFactor,
+
+                shiftAmt = 0,
+                done = false;
+
+            while (!done) {
+                var newCanvas = canvasShiftImg(img, shiftAmt, imgScaleFactor, pdfPageHeightPx, pdfPageWidthPx);
+                pdf.addImage(newCanvas, 'png', 0, 0, pdfPageWidth, 0, null, 'SLOW');
+
+                shiftAmt -= pdfPageHeightPx;
+
+                if (-1 * shiftAmt < imgScaledHeight) {
+                    pdf.addPage();
+                } else {
+                    done = true;
+                }
+            }
+
+            pdf.save('test.pdf');
+        };
+
+        var imageLoadError = function() {
+            alert('there was an image load error :(');
+        };
+
+        var gravarDB = function() {
+            let imgData = canvasShiftImg()
+            localStorage.setItem('imagem', img);
+            window.location.href = 'escolherMoldura.html';
+        }
+
+
+        html2canvas($('main')[0], {
+            onrendered: function(canvas) {
+                // params: canvas, onload, onerror
+                //canvasToImg(canvas, imageToPdf, imageLoadError);
+                canvasToImg(canvas, gravarDB, imageLoadError);
+            }
+        });
+    }
 
 
 });

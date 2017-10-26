@@ -26,6 +26,7 @@ img {
 
 #quadro {
     margin-top: 115px;
+    border: 1px solid orangered;
     /*width: 100%;
     padding: 20px;
     height: 500px;*/
@@ -36,6 +37,7 @@ img {
     B / (A / 100) = C% 
     padding-top: calc( 4 / (3/100))%; */
     padding-top: 133.333333%;
+    background-size: 100% 100%;
 }
 
 .content {
@@ -58,6 +60,20 @@ img {
 
 .paleta span {
     display: block;
+}
+
+#addButton {
+    padding: 5px;
+}
+
+#addButton span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 8px;
+}
+
+#addButon .fa-font {
+    font-size: 13px !important;
 }
 
 .color-item,
@@ -270,6 +286,7 @@ h4 {
     border: 1px solid #cccccc;
     width: 70%;
     font-size: 15px;
+    color: #666666;
 }
 
 #font-size {
@@ -279,6 +296,11 @@ h4 {
     width: 29%;
     margin-left: 1%;
     float: right;
+    color: #666666;
+}
+
+.btn-limpar {
+    color: #FFFFFF;
 }
 
 .btn-align {
@@ -287,8 +309,12 @@ h4 {
     float: left;
     border: 1px solid #cccccc;
     background: #f8f8f8;
-    color: #999999;
+    color: #999;
     padding: 10px;
+}
+
+.btn-align .fa {
+    font-size: 14px !important;
 }
 
 .btn-align :nth-child(2) {
@@ -300,91 +326,71 @@ h4 {
     vertical-align: super;
     font-size: 8px;
     margin-left: -7px;
+    font-size: 10px !important;
 }
 
 .bg-item {
     width: 100%;
     height: 50px;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
+.ancora {
+    background-image: url("../img/fundos-thumbs/ancora-thumb.jpg") !important;
+}
+
+.confetes {
+    background-image: url("../img/fundos-thumbs/confetes-thumb.jpg") !important;
+}
+
+.coracao {
+    background-image: url("../img/fundos-thumbs/coracao-thumb.jpg") !important;
+}
+
+.diversao {
+    background-image: url("../img/fundos-thumbs/diversao-thumb.jpg") !important;
+}
+
+.floral {
+    background-image: url("../img/fundos-thumbs/floral-thumb.jpg") !important;
+}
+
 .geometrico {
-    background: #36c !important;
-    background: linear-gradient(115deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 0 0, linear-gradient(245deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 0 0, linear-gradient(115deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 7px -15px, linear-gradient(245deg, transparent 75%, rgba(255, 255, 255, .8) 75%) 7px -15px, #36c !important;
-    background-size: 15px 30px !important;
+    background-image: url("../img/fundos-thumbs/geometrico-thumb.jpg") !important;
 }
 
-.bolinhas {
-    background-color: #001 !important;
-    background-image: radial-gradient(white 15%, transparent 16%), radial-gradient(white 15%, transparent 16%) !important;
-    background-size: 60px 60px !important;
-    background-position: 0 0, 30px 30px !important;
-}
-
-.quadrados {
-    background-color: #eee !important;
-    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(-45deg, black 25%, transparent 25%, transparent 75%, black 75%, black) !important;
-    background-size: 60px 60px !important;
-}
-
-.ancoras {
-    background-image: url('../img/bg-ancora.jpg') !important;
-    background-position: center center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-}
-
-.flechas {
-    background: linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px, linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px), linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px, #92baac 68px, #92baac 113px, transparent 113px, transparent 158px, #92baac 158px) !important;
-    background-color: #e1ebbd !important;
-    background-size: 128px 128px !important;
-}
-
-.margaridas {
-    background-color: silver !important;
-    background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent) !important;
-    background-size: 100px 50px !important;
-}
-
-.raio {
-    background: linear-gradient(324deg, #232927 4%, transparent 4%) -70px 43px, linear-gradient( 36deg, #232927 4%, transparent 4%) 30px 43px, linear-gradient( 72deg, #e3d7bf 8.5%, transparent 8.5%) 30px 43px, linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) -70px 43px, linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) -70px 23px, linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 30px 23px, linear-gradient(324deg, #232927 4%, transparent 4%) -20px 93px, linear-gradient( 36deg, #232927 4%, transparent 4%) 80px 93px, linear-gradient( 72deg, #e3d7bf 8.5%, transparent 8.5%) 80px 93px, linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) -20px 93px, linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) -20px 73px, linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 80px 73px !important;
-    background-color: #232927 !important;
-    background-size: 100px 100px !important;
+.lar {
+    background-image: url("../img/fundos-thumbs/lar-thumb.jpg") !important;
 }
 
 .montanha {
-    background: linear-gradient(135deg, #ECEDDC 25%, transparent 25%) -50px 0, linear-gradient(225deg, #ECEDDC 25%, transparent 25%) -50px 0, linear-gradient(315deg, #ECEDDC 25%, transparent 25%), linear-gradient(45deg, #ECEDDC 25%, transparent 25%) !important;
-    background-size: 100px 100px !important;
-    background-color: #EC173A !important;
+    background-image: url("../img/fundos-thumbs/montanha-thumb.jpg") !important;
 }
 
-.folhas {
-    background-color: #fff !important;
-    background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#eee .1em, transparent .1em) !important;
-    background-size: 100% 1.2em !important;
+.luzes {
+    background-image: url("../img/fundos-thumbs/luzes-thumb.jpg") !important;
 }
 
-.nuvens {
-    background: linear-gradient(#ffffff 50%, rgba(255, 255, 255, 0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255, 255, 255, 0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255, 255, 255, 0) 0) 55px 0 #48B !important;
-    background-size: 110px 200px !important;
-    background-repeat: repeat-x !important;
+.natural {
+    background-image: url("../img/fundos-thumbs/natural-thumb.jpg") !important;
 }
 
 .botoes span {
     font-size: 11px;
     line-height: 13px;
     float: left;
-    margin-left: 2px;
-    position: absolute;
+    margin-left: 10px;
+    position: relative;
+    text-align: left;
 }
 
 .botoes input[type=checkbox] {
     position: relative;
     float: left;
-    top: 8px;
-    right: 2px;
+    top: 14px;
+    right: 12px;
 }
 
 .btn {
@@ -796,14 +802,28 @@ h4 {
 
 /* ########################## CADASTRO ########################## */
 
+.cadastro {
+    width: 755px !important;
+    margin: 70px auto 0 auto;
+    background-image: url("../img/rodape_papel.jpg");
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    padding: 0 25px;
+}
+
 .cadastro h3 {
-    color: orangered;
+    color: #666666;
     margin: 30px 0 10px 0;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .cadastro h6 {
     font-size: 14px;
     margin-bottom: 50px;
+    line-height: 20px;
+    color: #999999;
+    font-weight: 700;
 }
 
 #frmCadastro {
@@ -830,10 +850,17 @@ h4 {
 }
 
 #frmCadastro #bt-cadastrar {
-    width: 15%;
     text-transform: uppercase;
     float: right;
     margin: 30px 0;
+    font-weight: 600;
+}
+
+button.btn.btn-default.btn-voltar {
+    margin-top: 30px;
+    border-radius: 0;
+    color: #FFFFFF;
+    float: left;
     font-weight: 600;
 }
 
@@ -844,4 +871,170 @@ h4 {
     font-weight: 600;
     border-bottom: 1px solid orangered;
     padding-bottom: 5px;
+}
+
+#loading {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FFFFFF;
+    display: none;
+}
+
+#loading img {
+    top: 50%;
+    position: absolute;
+    left: 50%;
+}
+
+.localizar_endereco {
+    padding: 25px 0;
+}
+
+.localizar_endereco a {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #999;
+    text-decoration: underline;
+}
+
+.question {
+    padding-top: 28px;
+}
+
+.question i {
+    color: #666;
+}
+
+
+/* ################################## PAGAMENTO ###################################### */
+
+.pagamento h3 {
+    color: #666666;
+    margin: 30px 0 10px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.pagamento h6 {
+    font-size: 14px;
+    margin-bottom: 50px;
+    line-height: 20px;
+    color: #999999;
+    font-weight: 700;
+}
+
+.pagseguro {
+    margin-top: 30px;
+}
+
+.nav-tabs {
+    margin-bottom: 50px;
+}
+
+.nav-tabs .nav-item {
+    text-align: center;
+    width: 33.33%;
+    background-color: #f9f9f9;
+}
+
+.nav-tabs .nav-item a.nav-link.active {
+    color: orangered;
+    font-weight: bold;
+}
+
+.nav-tabs .nav-item a.nav-link {
+    color: #666;
+    font-weight: bold;
+}
+
+#bandeira {
+    float: right;
+    position: relative;
+    top: -33px;
+    right: 10px;
+}
+
+#cartao {
+    padding: 0 50px 50px 50px;
+}
+
+#cartao label,
+#cartao span {
+    color: #999;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#cartao span {
+    font-size: 12px;
+}
+
+#validade_mes,
+#validade_ano,
+#parcelas {
+    padding: .5rem .75rem;
+    font-size: .8rem;
+    line-height: 1.25;
+    color: orangered;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    margin: 2px 2px 0 2px;
+}
+
+#validade_mes {
+    margin-right: 10px;
+}
+
+#cartao .validade label {
+    display: block;
+}
+
+#cartao .radio-group {
+    font-size: 14px;
+    color: #666;
+}
+
+.total-a-pagar {
+    background-color: #f1f1f1;
+    padding: 20px 30px;
+    color: #666;
+}
+
+#cartao .total-a-pagar span {
+    font-weight: bold;
+    float: right;
+    font-size: 18px !important;
+}
+
+#parcelas {
+    margin-left: 10px;
+    background-color: #f9f9f9;
+    color: #999;
+}
+
+#bt-concluir {
+    float: right;
+}
+
+#boleto{
+    padding:20px 100px 50px 100px;
+}
+
+#boleto p{
+    color: #999;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#boleto button{
+    float:right;
 }

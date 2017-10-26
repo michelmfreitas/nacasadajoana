@@ -22,14 +22,12 @@ $(document).ready(function() {
     }
 
 
-
-
     $("#bt-cadastrar").click(function() {
 
         if (
             $("#nome").val() == "",
             $("#email").val() == "",
-            $(".sexo").val() == undefined,
+            //$(".sexo").val() == undefined,
             $("#telefone").val() == "",
             $("#endereco").val() == "",
             $("#numero").val() == "",
@@ -45,7 +43,7 @@ $(document).ready(function() {
         var cadastro = {
             "nome": $("#nome").val(),
             "email": $("#email").val(),
-            "sexo": $(".sexo:checked").val(),
+            //"sexo": $(".sexo:checked").val(),
             "telefone": $("#telefone").val(),
             "destinatario": $("#destinatario").val(),
             "endereco": $("#endereco").val(),
@@ -61,8 +59,8 @@ $(document).ready(function() {
 
         //console.log(cadastro);
         localStorage.setItem('dadosUsuario', JSON.stringify(cadastro));
-
-        window.location.href = 'pagamento.html';
+        console.log('redirecionando...');
+        window.location.href = 'pagamento.php';
     });
 
 

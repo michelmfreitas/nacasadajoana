@@ -108,6 +108,8 @@ $(document).ready(function() {
 
     function pesquisacep(valor, quantidade) {
 
+        $("#loading").show();
+
         var dados = {};
 
         //Nova variável "cep" somente com dígitos.
@@ -144,6 +146,7 @@ $(document).ready(function() {
                     success: function(res) {
 
                         let result = JSON.parse(res).response;
+                        //console.log(result, result[0].Erro);
 
                         if (result[0].Erro == 0) {
                             dados.sedex = stringToNumber(result[0].Valor) / 100;
@@ -151,10 +154,14 @@ $(document).ready(function() {
                             dados.pac = stringToNumber(result[1].Valor) / 100;
                             dados.prazo_pac = parseInt(result[1].PrazoEntrega);
 
+                            //console.log((dados.pac).toFixed(2) + " - " + dados.prazo_pac + " dias");
+
                             $(".preco_pac").text((dados.pac).toFixed(2) + " - " + dados.prazo_pac + " dias");
                             $(".preco_sedex").text((dados.sedex).toFixed(2) + " - " + dados.prazo_sedex + " dias");
 
                             localStorage.setItem('frete', JSON.stringify(dados));
+
+                            $("#loading").hide();
 
                         } else {
                             alert(result[0].MsgErro);

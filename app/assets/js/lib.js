@@ -33,11 +33,12 @@ $(document).ready(function() {
     $(".bg-item").click(function() {
         let bg = $(this).attr("data-color");
         $("#quadro").removeAttr('class');
-        $("#quadro").addClass(bg);
+        //$("#quadro").addClass(bg);
+        $("#quadro").css("background-image", `url('assets/img/fundos-tela/${bg}.jpg')`);
     });
 
     $(".text-item").click(function() {
-        console.log(alvoAtivo);
+        //console.log(alvoAtivo);
         let text = $(this).attr("data-color");
         let cor = $("." + text).css('background-color');
         $(".box[data-target='" + alvoAtivo + "']").css("color", cor);
@@ -158,6 +159,7 @@ $(document).ready(function() {
     });
 
     $(".content").on("click", ".box", function() {
+        $(this).trigger("dblclick");
         var obj = $(this).attr('data-target');
         alvoAtivo = obj;
         $(".box").css('border-color', "#FFF");

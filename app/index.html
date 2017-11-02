@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Arbutus+Slab|Archivo+Black|Boogaloo|Bowlby+One+SC|Bree+Serif|Capriola|Caveat|Pacifico|Shrikhand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Asap:500,600,700|Amatic+SC|Arbutus+Slab|Archivo+Black|Boogaloo|Bowlby+One+SC|Bree+Serif|Capriola|Caveat|Pacifico|Shrikhand" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -27,6 +27,7 @@
     <script src="https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/jquery.ui.rotatable.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" type="text/css">
 
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <script src="assets/js/lib.js"></script>
 
     <!--<script type="text/javasctipt" src="https://cdnjs.com/libraries/popper.js" async></script>
@@ -39,14 +40,18 @@
 
         <div class="row">
 
-            <div class="col-md-4 col-sm-6" id="conteudo-quadro">
+            <div class="col-md-5 col-sm-6" id="conteudo-quadro">
 
                 <section id="quadro">
                     <div class="content">
-                        <div class="box" data-target="1"><span class="texto">Dê um clique para começar.</span>
+                        <div class="box" data-target="1"><span class="texto">Dê dois cliques para começar.</span>
                         </div>
                     </div>
                 </section>
+
+                <div class="ferramentas">
+                    <button class="btn btn-default btn-apagar-box" title="Apagar seleção"><i class="fa fa-trash-o"></i></button>
+                </div>
 
             </div>
 
@@ -62,30 +67,32 @@
 
                     <div class="col-md-4">
                         <select name="fonte" id="fonte">
-                            <option value="font-1" class="font-1" checked>Amatic SC</option>
-                            <option value="font-2" class="font-2">Arbutus Slab</option>
-                            <option value="font-3" class="font-3">Archivo Black</option>
-                            <option value="font-4" class="font-4">Boogaloo</option>
-                            <option value="font-5" class="font-5">Bowlby One SC</option>
-                            <option value="font-6" class="font-6">Bree Serif</option>
-                            <option value="font-7" class="font-7">Capriola</option>
-                            <option value="font-8" class="font-8">Caveat</option>
-                            <option value="font-9" class="font-9">Pacifico</option>
-                            <option value="font-10" class="font-10">Shrikhand</option>
+                            <option value="font-1" id="font-1" checked>Amatic SC</option>
+                            <option value="font-2" id="font-2">Arbutus Slab</option>
+                            <option value="font-3" id="font-3">Archivo Black</option>
+                            <option value="font-4" id="font-4">Boogaloo</option>
+                            <option value="font-5" id="font-5">Bowlby One SC</option>
+                            <option value="font-6" id="font-6">Bree Serif</option>
+                            <option value="font-7" id="font-7">Capriola</option>
+                            <option value="font-8" id="font-8">Caveat</option>
+                            <option value="font-9" id="font-9">Pacifico</option>
+                            <option value="font-10" id="font-10">Shrikhand</option>
                         </select>
                         <select name="font-size" id="font-size">
                                 <option value="0">1</option>
                                 <option value="1">2</option>
                                 <option value="2">3</option>
-                                <option value="3">4</option>
+                                <option value="3" selected>4</option>
                                 <option value="4">5</option>
                                 <option value="5">6</option>
+                                <option value="6">7</option>
+                                <option value="7">8</option>
                             </select>
                     </div>
 
                     <div class="col-md-3">
                         <button class="btn-align align-left"><i class="fa fa-align-left"></i></button>
-                        <button class="btn-align align-center"><i class="fa fa-align-center"></i></button>
+                        <button class="btn-align align-center" style='border-right: 0; border-left: 0;'><i class="fa fa-align-center"></i></button>
                         <button class="btn-align align-right"><i class="fa fa-align-right"></i></button>
                     </div>
 
@@ -126,7 +133,7 @@
 
                     <div class="col20 paleta"><span>PB</span></div>
                     <div class="col20 paleta"><span>Quentes</span></div>
-                    <div class="col20 paleta"><span>Frias</span></div>
+                    <div class="col20 paleta"><span>Winter is coming</span></div>
                     <div class="col20 paleta"><span>Flamingo</span></div>
                     <div class="col20 paleta"><span>Nordic</span></div>
 
@@ -204,7 +211,7 @@
 
                 </div>
 
-                <br />
+                <br>
 
                 <div class="row barra-fundo">
 
@@ -219,7 +226,7 @@
                     </div>
 
                     <div class="col20 bg-custom">
-                        <span>Montanha</span>
+                        <span>Luzes</span>
                         <div class="bg-item luzes" data-color="luzes"></div>
                     </div>
 
@@ -235,11 +242,10 @@
 
                 </div>
 
-                <br />
 
-                <div class="row botoes">
-                    <div class="col-md-3">
-                        <button class="btn btn-block btn-limpar">Limpar</button>
+                <div class="row botoes" style='margin-top:108px;'>
+                    <div class="col-md-4">
+                        <button class="btn btn-block btn-limpar">Começar de novo</button>
                     </div>
                     <div class="col-md-3 ml-auto" style="padding-top:24px;">
                         <input type="checkbox" name="termos" class="termos">
@@ -249,6 +255,8 @@
                         <button class="btn btn-block btn-success" id="bt-enviar">Continuar</button>
                     </div>
                 </div>
+
+                <br><br><br>
 
             </div>
 

@@ -1,6 +1,40 @@
 $(document).ready(function() {
 
+    function mantemProporcaoQuadro() {
+        var larguraQuadro = $("#quadro").width();
+        console.log(larguraQuadro);
+        var alturaQuadro = (larguraQuadro * 4960) / 3508;
+        /*var alturaMaxima = ($(window).height() * 100) / 90;
+        var maximoLargura;
+
+        if ((alturaQuadro - 50) > alturaMaxima) {
+            maximoLargura = (larguraQuadro * 100) / alturaMaxima;
+            console.log(maximoLargura);
+            $("#quadro").css("width", maximoLargura.toFixed(2) + "%");
+        }
+
+        if (alturaMaxima < 500) {
+            alert("A janela do seu navegador precisa de pelo menos 500px de altura para que você tenha uma boa experiência com a nossa ferramenta. Aumenta a janelinha aí, vai!");
+        }*/
+
+        $("#quadro").css("height", alturaQuadro.toFixed(2) + "px");
+        //$("#quadro").css("max-height", alturaMaxima.toFixed(2) + "px");
+
+
+    }
+
+    mantemProporcaoQuadro();
+
+    $(window).resize(function() {
+        mantemProporcaoQuadro();
+    });
+
     alvoAtivo = 1;
+
+    $("#bt-voltar").on("click", function() {
+        console.log('voltando...');
+        window.location.href = history.back(-1);
+    });
 
     function atualizarBoxes() {
         // Prepare extra handles
@@ -39,6 +73,8 @@ $(document).ready(function() {
 
     $(".text-item").click(function() {
         //console.log(alvoAtivo);
+        console.log('clicou');
+        $(".texto").removeAttr('style');
         let text = $(this).attr("data-color");
         let cor = $("." + text).css('background-color');
         $(".box[data-target='" + alvoAtivo + "']").css("color", cor);
@@ -64,68 +100,130 @@ $(document).ready(function() {
         } else {
             let quadro = $("#conteudo-quadro").html();
 
-            //retirar as bordas dos boxes
+            //retirar as bordas dos boxes, trocar imagem por alta resolução do fundo
             $("#quadro").css('border', 'none');
+            var bgQuadro = $("#quadro").css('background-image');
+            bgQuadro = bgQuadro.replace("/fundos-tela/", "/fundos-exportacao/");
+            $("#quadro").css('background-image', bgQuadro);
+
             $(".content").css('border', 'none');
             $(".box").css('border', 'none');
 
-            exportar();
+            /*var _url = $("#quadro").css('background-image');
+            //var url = _url.slice(5, _url.length - 2);
+            //console.log(url.slice(5, url.length - 2));
+
+
+            function toDataURL(url, callback) {
+                
+                var xhr = new XMLHttpRequest();
+                xhr.open('get', url);
+
+                xhr.responseType = 'blob';
+                xhr.onload = function() {
+                    var fr = new FileReader();
+
+                    fr.onload = function() {
+                        callback(this.result);
+                    };
+
+                    fr.readAsDataURL(xhr.response); // async call
+                };
+                xhr.send();
+            }
+            toDataURL(url, function(dataURL) {
+                var img = dataURL;
+                console.log(img);
+                localStorage.setItem('imagem', img);
+                var doc = new jsPDF({
+                    orientation: 'p',
+                    unit: 'px',
+                    format: 'a3'
+                });
+                var width = doc.internal.pageSize.width;
+                var height = doc.internal.pageSize.height;
+                console.log(width);
+                console.log(height);
+                doc.addImage(img, 'jpg', 0, 0, width, height);
+                doc.save(`teste.pdf`);
+            });
+            
             //transforma a DIV #conteudo-quadro em uma imagem.
+
+            // html2canvas($('#quadro'), { letterRendering: true, dpi: 300 }).then(
+            //     function(canvas) {
+            //         var imgData = canvas.toDataURL('image/png', 1.0);
+            //         img = new Image();
+            //         img.src = imgData;
+            //         img.width = 2482;
+            //         img.height = 3508;
+            //         img.onload = function() {
+            //             localStorage.setItem('imagem', imgData);
+            //             //window.location.href = 'escolherMoldura.html';
+            //             //criando PDF
+            //             var doc = new jsPDF({
+            //                 orientation: 'p',
+            //                 unit: 'mm',
+            //                 format: 'a3'
+            //             });
+            //             doc.addImage(img, 'PNG', 0, 0, 297, 420);
+            //             doc.save(`teste.pdf`);
+            //         }
+            //         img.onerror = function() { alert('there was an image load error :('); };
+            //     }
+            // ); */
+
             html2canvas($('#quadro'), {
                 onrendered: function(canvas) {
                     var imgData = canvas.toDataURL('image/png', 1.0);
-                    /*var pdf = new jsPDF('p', 'mm');
-                    pdf.addImage(imgData, 'PNG', 10, 10);
-                    pdf.save('test.pdf');*/
-
                     img = new Image();
                     img.src = imgData;
+                    img.width = 2482;
+                    img.height = 3508;
                     img.onload = function() {
                         localStorage.setItem('imagem', imgData);
-                        //console.log(img);
-                        //$("#teste").html(img);
                         window.location.href = 'escolherMoldura.html';
-                        //alert('pronto.');
+                        //criando PDF
+                        /*var doc = new jsPDF({
+                            orientation: 'p',
+                            unit: 'mm',
+                            format: 'a3'
+                        });
+                        doc.addImage(img, 'PNG', 0, 0, 297, 420);*/
+                        //doc.save(`${pedido}.pdf`);
                     }
                     img.onerror = function() { alert('there was an image load error :('); };
 
-                    //console.log(imgData);
 
-
-                    //
                 },
-                //width: 1122.519685,
-                //height: 1587.401575,
+                scale: 2,
+                dpi: 300,
+                //width: 2482,
+                //height: 3508,
                 letterRendering: true,
 
             });
+
+
 
         }
     });
 
     $(".btn-limpar").on("click", function() {
-        $("#quadro").removeAttr('class');
-        $(".content").removeAttr('style');
-        $(".content").html('');
+        window.location.href = 'index.html';
     });
 
     $("#fonte").on("change", function() {
-        let fontes = [
-            "font-nosifer",
-            "font-anton",
-            "font-lobster"
-        ];
-        fontes.forEach(function(element) {
-            $(".box[data-target='" + alvoAtivo + "']").removeClass(element);
-        }, this);
-        $(".box[data-target='" + alvoAtivo + "']").addClass($(this).val());
+        $(".box[data-target='" + alvoAtivo + "']").removeAttr("id");
+        $(".box[data-target='" + alvoAtivo + "']").attr("id", $(this).val());
+
     });
 
     $("#font-size").on("change", function() {
         let tamanho = [
-            "14px", "18px", "24px", "32px", "42px", "56px"
+            "1rem", "1.4rem", "1.8rem", "2rem", "2.5rem", "3rem", "4rem", "5rem"
         ];
-        console.log($(this).val(), alvoAtivo);
+        //console.log($(this).val(), alvoAtivo);
         $(".box[data-target='" + alvoAtivo + "']").css("font-size", tamanho[$(this).val()]);
         $(".box[data-target='" + alvoAtivo + "']").css("line-height", tamanho[$(this).val()]);
     });
@@ -159,7 +257,7 @@ $(document).ready(function() {
     });
 
     $(".content").on("click", ".box", function() {
-        $(this).trigger("dblclick");
+        //$(this).trigger("dblclick");
         var obj = $(this).attr('data-target');
         alvoAtivo = obj;
         $(".box").css('border-color', "#FFF");
@@ -169,10 +267,20 @@ $(document).ready(function() {
         $(this).resizable().rotatable();
     });
 
+
+
     $("#addButton").on("click", function() {
+        //reseta opções de fontes
+        $("#fonte").val($("#fonte option:first").val());
+        $('#font-size option:eq(3)').attr('selected', 'selected');
         let novoBox = $(".box").length + 1;
         alvoAtivo++;
         $('#exampleModal').modal('show');
+    });
+
+    $(".btn-apagar-box").on("click", function() {
+        console.log("apagar elemento: " + alvoAtivo);
+        $(`.box[data-target=${alvoAtivo}]`).remove();
     });
 
     function alteraAlvoAtivo(alvoAtual) {
@@ -195,82 +303,6 @@ $(document).ready(function() {
         }
     });
 
-    function exportar() {
-        var canvasShiftImg = function(img, shiftAmt, scale, pageHeight, pageWidth) {
-            var c = document.createElement('canvas'),
-                ctx = c.getContext('2d'),
-                shifter = Number(shiftAmt || 0),
-                scaledImgHeight = img.height * scale,
-                scaledImgWidth = img.width * scale;
-
-            ctx.canvas.height = pageHeight;
-            ctx.canvas.width = pageWidth;
-            ctx.drawImage(img, 0, shifter, scaledImgWidth, scaledImgHeight)
-
-            return c;
-        };
-
-        var canvasToImg = function(canvas, loaded, error) {
-            var dataURL = canvas.toDataURL('image/png'),
-                img = new Image();
-            img.onload = loaded;
-            img.onerror = error;
-            img.src = dataURL;
-        };
-
-        var imageToPdf = function() {
-            // can't pass any parameters or else "this" won't be the img element
-            var img = this,
-                pdf = new jsPDF('l', 'px'),
-                pdfInternals = pdf.internal,
-                pdfPageSize = pdfInternals.pageSize,
-                pdfScaleFactor = pdfInternals.scaleFactor,
-                pdfPageWidth = pdfPageSize.width,
-                pdfPageHeight = pdfPageSize.height,
-                pdfPageWidthPx = pdfPageWidth * pdfScaleFactor,
-                pdfPageHeightPx = pdfPageHeight * pdfScaleFactor,
-
-                imgScaleFactor = Math.min(pdfPageWidthPx / img.width, 1),
-                imgScaledHeight = img.height * imgScaleFactor,
-
-                shiftAmt = 0,
-                done = false;
-
-            while (!done) {
-                var newCanvas = canvasShiftImg(img, shiftAmt, imgScaleFactor, pdfPageHeightPx, pdfPageWidthPx);
-                pdf.addImage(newCanvas, 'png', 0, 0, pdfPageWidth, 0, null, 'SLOW');
-
-                shiftAmt -= pdfPageHeightPx;
-
-                if (-1 * shiftAmt < imgScaledHeight) {
-                    pdf.addPage();
-                } else {
-                    done = true;
-                }
-            }
-
-            pdf.save('test.pdf');
-        };
-
-        var imageLoadError = function() {
-            alert('there was an image load error :(');
-        };
-
-        var gravarDB = function() {
-            let imgData = canvasShiftImg()
-            localStorage.setItem('imagem', img);
-            window.location.href = 'escolherMoldura.html';
-        }
-
-
-        html2canvas($('main')[0], {
-            onrendered: function(canvas) {
-                // params: canvas, onload, onerror
-                //canvasToImg(canvas, imageToPdf, imageLoadError);
-                canvasToImg(canvas, gravarDB, imageLoadError);
-            }
-        });
-    }
 
 
 });

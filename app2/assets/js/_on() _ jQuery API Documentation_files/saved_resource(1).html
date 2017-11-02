@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://api.jquery.com/on/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>on demo</title>
+  <style>
+  .test {
+    color: #000;
+    padding: .5em;
+    border: 1px solid #444;
+  }
+  .active {
+    color: #900;
+  }
+  .inside {
+    background-color: aqua;
+  }
+  </style>
+  <script src="./jquery-1.10.2.js.download"></script>
+<style>html, body { border:0; margin:0; padding:0; }body { font-family: 'Helvetica', 'Arial',  'Verdana', 'sans-serif'; }</style></head>
+<body style="">
+ 
+<div class="test">test div</div>
+ 
+<script>window.onload = function() {
+$( "div.test" ).on({
+  click: function() {
+    $( this ).toggleClass( "active" );
+  }, mouseenter: function() {
+    $( this ).addClass( "inside" );
+  }, mouseleave: function() {
+    $( this ).removeClass( "inside" );
+  }
+});
+};</script>
+ 
+
+</body></html>

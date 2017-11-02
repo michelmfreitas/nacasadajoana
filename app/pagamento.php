@@ -50,7 +50,8 @@ if (count($xml -> error) > 0) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
     <script src="assets/js/jquery.mask.min.js"></script>
-
+    
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <script src="assets/js/pagamento.js"></script>
 
     <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
@@ -267,80 +268,164 @@ if (count($xml -> error) > 0) {
             });
 
             $(".btn-pagar-boleto").click(function(){
-                var tokenCC;
+                
                 $("#loading").show();
                 
                 var hashComprador = PagSeguroDirectPayment.getSenderHash();
 
-                var param = {
-                    cardNumber: $("input#ncartao").val().replace(/[^\d]+/g,''),
-                    cvv: $("input#codigo_seguranca").val(),
-                    expirationMonth: $("#validade_mes").val(),
-                    expirationYear: $("#validade_ano").val(),
-                    //brand: 'visa',
-                    success: function(response) {
-                        tokenCC = response.card.token;
+                var carrinho = JSON.parse(localStorage.getItem('carrinho'));
+                var total = localStorage.getItem('total');
+                total = parseInt(total).toFixed(2);
+                var comprador = JSON.parse(localStorage.getItem('dadosUsuario'));
                         
-                        var carrinho = JSON.parse(localStorage.getItem('carrinho'));
-                        var total = localStorage.getItem('total');
-                        total = parseInt(total).toFixed(2);
-                        var comprador = JSON.parse(localStorage.getItem('dadosUsuario'));
-                        var parcelamento = JSON.parse(localStorage.getItem('parcelamento'));
-                        
-                        comprador.ddd = $("#telefone").val().replace(/[^\d]+/g,'').slice(0,2);
-                        comprador.phone = $("#telefone").val().replace(/[^\d]+/g,'').slice(2,12);
-                        comprador.cpf = $("input#cpf_cartao").val().replace(/[^\d]+/g,'');
-                        comprador.cep = comprador.cep.replace(/[^\d]+/g,'');
+                comprador.ddd = $("#telefone").val().replace(/[^\d]+/g,'').slice(0,2);
+                comprador.phone = $("#telefone").val().replace(/[^\d]+/g,'').slice(2,12);
+                comprador.cpf = $("input#cpf_cartao").val().replace(/[^\d]+/g,'');
+                comprador.cep = comprador.cep.replace(/[^\d]+/g,'');
 
-                        var dados_url = {
-                            email: 'michelmfreitas@gmail.com',
-                            token: '705A5625690E4CAA91E6AFB178B047EA',
-                            paymentMode: 'default',
-                            paymentMethod: 'boleto',
-                            currency: 'BRL',
-                            extraAmount: '1.00',
-                            itemId1: '0001',
-                            itemDescription1: 'Quadros personalizados Na Casa Da Joana',
-                            receiverEmail: 'michelmfreitas@gmail.com',
-                            itemAmount1: total,
-                            itemQuantity1: 1,
-                            reference: 'NCDJ-'+((new Date().getTime() / 1000) * Math.random()/10000),
-                            senderName: `${comprador.nome}`,
-                            senderCPF: `${comprador.cpf}`,
-                            senderAreaCode: `${comprador.ddd}`,
-                            senderPhone:`${comprador.phone}`,
-                            //senderEmail:`${comprador.email}`,
-                            senderEmail:`c51676115025140639469@sandbox.pagseguro.com.br`,
-                            senderHash:`${hashComprador}`,
-                            shippingAddressStreet:`${comprador.endereco}`,
-                            shippingAddressNumber:`${comprador.numero}`,
-                            shippingAddressComplement:`${comprador.complemento}`,
-                            shippingAddressDistrict:`${comprador.bairro}`,
-                            shippingAddressPostalCode:`${comprador.cep}`,
-                            shippingAddressCity:`${comprador.cidade}`,
-                            shippingAddressState:`${comprador.uf}`,
-                            shippingAddressCountry:'BRA'
-                        }
-
-                        $.ajax({
-                            url: "api.php",
-                            type: 'POST',
-                            data: { dados: dados_url },
-                            success: function (data) {
-                                processaCompra(data); 
-                            },
-                            error: function(erro){
-                                alert("Cannot get data");
-                                console.log(erro);
-                            }
-                        });
-                    },
-                    complete: function(response) {
-                        //$("#loading").hide();
-                    }
+                var dados_url = {
+                    email: 'michelmfreitas@gmail.com',
+                    token: '705A5625690E4CAA91E6AFB178B047EA',
+                    paymentMode: 'default',
+                    paymentMethod: 'boleto',
+                    currency: 'BRL',
+                    extraAmount: '1.00',
+                    itemId1: '0001',
+                    itemDescription1: 'Quadros personalizados Na Casa Da Joana',
+                    receiverEmail: 'michelmfreitas@gmail.com',
+                    itemAmount1: total,
+                    itemQuantity1: 1,
+                    reference: 'NCDJ-'+((new Date().getTime() / 1000) * Math.random()/10000),
+                    senderName: `${comprador.nome}`,
+                    senderCPF: `${comprador.cpf}`,
+                    senderAreaCode: `${comprador.ddd}`,
+                    senderPhone:`${comprador.phone}`,
+                    //senderEmail:`${comprador.email}`,
+                    senderEmail:`c51676115025140639469@sandbox.pagseguro.com.br`,
+                    senderHash:`${hashComprador}`,
+                    shippingAddressStreet:`${comprador.endereco}`,
+                    shippingAddressNumber:`${comprador.numero}`,
+                    shippingAddressComplement:`${comprador.complemento}`,
+                    shippingAddressDistrict:`${comprador.bairro}`,
+                    shippingAddressPostalCode:`${comprador.cep}`,
+                    shippingAddressCity:`${comprador.cidade}`,
+                    shippingAddressState:`${comprador.uf}`,
+                    shippingAddressCountry:'BRA'
                 }
 
+                //console.log(dados_url);
+
+                $.ajax({
+                    url: "api.php",
+                    type: 'POST',
+                    data: { dados: dados_url },
+                    success: function (data) {
+                        dados = JSON.parse(data);
+                        console.log(dados.paymentLink);
+                        window.open(dados.paymentLink);
+                        processaCompra(data);
+                    },
+                    error: function(erro){
+                        alert("Cannot get data");
+                        console.log(erro);
+                    },
+                    complete: function(response) {
+                        $("#loading").hide();
+                    }
+                });                   
+
             });
+
+
+            $(".btn-pagar-deposito-em-conta").click(function(){
+                
+                $("#loading").show();
+                
+                var hashComprador = PagSeguroDirectPayment.getSenderHash();
+
+                var carrinho = JSON.parse(localStorage.getItem('carrinho'));
+                var total = localStorage.getItem('total');
+                total = parseInt(total).toFixed(2);
+                var comprador = JSON.parse(localStorage.getItem('dadosUsuario'));
+                        
+                comprador.ddd = $("#telefone").val().replace(/[^\d]+/g,'').slice(0,2);
+                comprador.phone = $("#telefone").val().replace(/[^\d]+/g,'').slice(2,12);
+                comprador.cpf = $("input#cpf_cartao").val().replace(/[^\d]+/g,'');
+                comprador.cep = comprador.cep.replace(/[^\d]+/g,'');
+
+                var dados_url = {
+                    email: 'michelmfreitas@gmail.com',
+                    token: '705A5625690E4CAA91E6AFB178B047EA',
+                    paymentMode: 'default',
+                    paymentMethod: 'online_debit',
+                    bankName: 'itau',
+                    currency: 'BRL',
+                    extraAmount: '1.00',
+                    itemId1: '0001',
+                    itemDescription1: 'Quadros personalizados Na Casa Da Joana',
+                    receiverEmail: 'michelmfreitas@gmail.com',
+                    itemAmount1: total,
+                    itemQuantity1: 1,
+                    reference: 'NCDJ-'+((new Date().getTime() / 1000) * Math.random()/10000),
+                    senderName: `${comprador.nome}`,
+                    senderCPF: `${comprador.cpf}`,
+                    senderAreaCode: `${comprador.ddd}`,
+                    senderPhone:`${comprador.phone}`,
+                    //senderEmail:`${comprador.email}`,
+                    senderEmail:`c51676115025140639469@sandbox.pagseguro.com.br`,
+                    senderHash:`${hashComprador}`,
+                    shippingAddressStreet:`${comprador.endereco}`,
+                    shippingAddressNumber:`${comprador.numero}`,
+                    shippingAddressComplement:`${comprador.complemento}`,
+                    shippingAddressDistrict:`${comprador.bairro}`,
+                    shippingAddressPostalCode:`${comprador.cep}`,
+                    shippingAddressCity:`${comprador.cidade}`,
+                    shippingAddressState:`${comprador.uf}`,
+                    shippingAddressCountry:'BRA'
+                }
+
+                $.ajax({
+                    url: "api.php",
+                    type: 'POST',
+                    data: { dados: dados_url },
+                    success: function (data) {
+                        dados = JSON.parse(data);
+                        //console.log(dados);
+                        window.open(dados.paymentLink);
+                        //geraPDF(dados_url.reference);
+                        processaCompra(data);
+                    },
+                    error: function(erro){
+                        alert("Cannot get data");
+                        console.log(erro);
+                    },
+                    complete: function(response) {
+                        console.log('complete...');
+                    }
+                });
+            });
+
+
+            function geraPDF(pedido){
+                var img = localStorage.getItem('imagem');
+                //var cache_width = $('#quadro').width(); //Criado um cache do CSS
+                //var a3 = [ 297, 420]; // Widht e Height de uma folha a3
+
+                var doc = new jsPDF({
+                    orientation: 'p',
+                    unit: 'mm',
+                    format: 'a5'
+                });
+                doc.addImage(img, 'PNG', 0, 0, 297, 420);
+                doc.save(`${pedido}.pdf`);
+                //var pdf = doc.output('datauristring');
+                //console.log(pdf);
+                //Retorna ao CSS normal
+                //$('#quadro').width(cache_width);
+
+            }
+
+
 
             function verificaParcelamento(valor, bandeira){
                 PagSeguroDirectPayment.getInstallments({
@@ -369,12 +454,14 @@ if (count($xml -> error) > 0) {
                 });
             }
 
+
+
             function processaCompra(dados){
                 let dadosCompra = JSON.parse(dados);
                 $.ajax({
                     url: "enviaEmail.php",
                     type: 'POST',
-                    data: { dados: dadosCompra, carrinho: localStorage.getItem('carrinho') },
+                    data: { dados: dadosCompra, carrinho: localStorage.getItem('carrinho'), imagem: localStorage.getItem('imagem') },
                     success: function (data) {
                         let res = JSON.parse(data);
                         if(res.error == 0 && res.code == 1){
@@ -558,7 +645,7 @@ if (count($xml -> error) > 0) {
                 <br>
                 <p style='color:orangered;'>Total a pagar: R$ <span class='valor-boleto'></span></p>
                 <br>
-                <p><button class='btn btn-success btn-pagar-deposito em conta'>Enviar Pedido</button></p>
+                <p><button class='btn btn-success btn-pagar-deposito-em-conta'>Enviar Pedido</button></p>
             </div>
 
         </div>

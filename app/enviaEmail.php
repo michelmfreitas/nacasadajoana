@@ -9,6 +9,8 @@ $xml = $_POST['dados'];
 
 $itens_carrinho = "<h3>Carrinho de compras</h3>";
 
+$imagem = $_POST['imagem'];
+
 foreach($carrinho as $c){
     $itens_carrinho .= "<strong>Item:</strong> ".$c['item']."<br>";
     $itens_carrinho .= "<strong>Quantidade:</strong> ".$c['quantidade']."<br><hr>";
@@ -23,6 +25,8 @@ $mail->SMTPOptions = array(
         'allow_self_signed' => true
     )
 );
+$mail->CharSet = 'UTF-8';
+
 $mail->Host = "mail.nacasadajoana.com.br"; // SMTP server
 $mail->SMTPDebug = 0;                     // enables SMTP debug information (for testing)
 $mail->SMTPAuth = true;                  // enable SMTP authentication
@@ -34,16 +38,25 @@ $mail->Password = "rogerio123#";
 
 $assunto = 'PEDIDO ('.$xml['reference'].'): O SEU QUADRO PERSONALIZADO - NA CASA DA JOANA';
 
+if($xml['paymentMethod']['type'] == 1){
+    $metodoPagto = "Cartão de Crédito";
+}elseif($xml['paymentMethod']['type'] == 2){
+    $metodoPagto = "Boleto Bancário";
+}else{
+    $metodoPagto = "Débito Online";
+}
+
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 $msg = "<html><head><meta charset='utf-8'></head><body>
-    <img src='http://placehold.it/700x150&text=top'><br><br>
+    <img src='http://nacasadajoana.com.br/site/emails_do_site/topo.gif'><br><br>
     <p>Foi efetuado um pedido de compra no site Na Casa Da Joana Personalizado.</p>
     <h3>Dados do pedido</h3>
-    <strong>Código da compra: </strong>".$xml['code']."<br>
+    <strong>C&oacute;digo da compra: </strong>".$xml['code']."<br>
     <strong>Referência: </strong>".$xml['reference']."<br>
     <strong>Data da compra: </strong>".$xml['date']."<br>
-    <strong>Total da compra: </strong>".$xml['grossAmount']."<br>";
+    <strong>Total da compra: </strong>".$xml['grossAmount']."<br>
+    <strong>M&eacute;todo de pagamento: </strong>".$metodoPagto."<br>";
     if($xml['installmentCount']){
         $msg .= "<strong>Parcelas: </strong>".$xml['installmentCount']."<br>";
     }
@@ -62,8 +75,11 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     <br>
     <h3>Dados da Entrega</h3>
     <strong>Endereço: </strong>".$xml['shipping']['address']['street']."<br>
-    <strong>Número: </strong>".$xml['shipping']['address']['number']."<br>
-    <strong>Complemento: </strong>".$xml['shipping']['address']['complement']."<br>
+    <strong>Número: </strong>".$xml['shipping']['address']['number']."<br>";
+    if(isset($xml['shipping']['address']['complement'])){
+        $msg .= "<strong>Complemento: </strong>".$xml['shipping']['address']['complement']."<br>";
+    }
+    $msg .= "
     <strong>Bairro: </strong>".$xml['shipping']['address']['district']."<br>
     <strong>Cidade: </strong>".$xml['shipping']['address']['city']."<br>
     <strong>Estado: </strong>".$xml['shipping']['address']['state']."<br>
@@ -71,7 +87,11 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     <strong>País: </strong>".$xml['shipping']['address']['country']."<br>
 
     <br>
-    <h3>Código de retorno PagSeguro - para uso de identificação</h3>
+    <h3>Imagem gerada</h3>
+    <img src='{$imagem}' style='border:1px solid #333;' />
+
+    <br>
+    <h3>C&oacute;digo de retorno PagSeguro - para uso de identificação</h3>
     <div style='padding:20px; background-color:#f9f9f9; border:1px solid #CCC; color:#666;'>
         ".json_encode($xml)."
     </div>
@@ -123,23 +143,31 @@ $assunto = 'Recebemos seu pedido '.$xml['reference'].' com sucesso';
 $msg = "<html><head><meta charset='utf-8'></head><body>
     <div style='width:600px;'>
     <img src='http://nacasadajoana.com.br/site/emails_do_site/topo.gif'><br><br>
-    <p>Oi ".$xml['sender']['name'].",</p><br>
-    <p>Ficamos muito felizes em receber o seu pedido <i><u>".$xml['reference']."</i></u> :)</p><br>
-    <p>Aqui estão algumas informações importantes:</p><br>
-    <p>Produzimos nossos produtos um a um, por isso seguimos os seguintes prazos de produção:</p><br>
+    </p>Oi ".$xml['sender']['name'].",<br><br>
+    Ficamos muito felizes em receber o seu pedido <i><u>".$xml['reference']."</i></u> :)<br><br>
+    Aqui estão algumas informações importantes:<br><br>
+    Produzimos nossos produtos um a um, por isso seguimos os seguintes prazos de produção:<br><br>
     
     - Pôster sem moldura e outros produtos - prazo máximo de 7 dias úteis<br>
-    - Pôster com moldura - prazo máximo de 10 dias úteis<br>
+    - Pôster com moldura - prazo máximo de 10 dias úteis<br><br>
     
-    <p>O prazo começa a ser contado a partir da aprovação do seu pagamento pelo PagSeguro ou PayPal ou, ainda, pela verificação do seu depósito bancário.</p><br>
-    <p>Após esse prazo, o seu pedido será enviado pelos Correios e você receberá automaticamente o código de rastreio para acompanhá-lo. O prazo de entrega dos Correios varia de acordo com a modalidade escolhida:</p><br>
+    O prazo começa a ser contado a partir da aprovação do seu pagamento pelo PagSeguro ou PayPal
+    ou, ainda, pela verificação do seu dep&oacute;sito bancário.<br><br>
+    Após esse prazo, o seu pedido será enviado pelos Correios e você; receberá automaticamente o 
+    código de rastreio para acompanhá-lo. O prazo de entrega dos Correios varia de acordo com 
+    a modalidade escolhida:<br><br>
     
     - Encomendas SEDEX - até 5 dias úteis<br>
-    - Encomendas PAC - até 12 dias úteis<br>
+    - Encomendas PAC - até 12 dias úteis<br><br>
     
-    <p>Para falar com a gente ou acompanhar o andamento do seu pedido, acesse o menu 'Minha Conta'.</p>
-    <br>
-    <p>Abra um sorriso Na Casa da Joana :)</p><br><br>
+    Para falar com a gente ou acompanhar o andamento do seu pedido, acesse o menu 'Minha Conta'.
+    <br><br><br>";
+
+    if($metodoPagto == "Boleto Bancário"){
+        $msg .= "<a href='".$xml['paymentLink']."' target='_blank'>Link do boleto</a><br><br><br>";
+    }
+    
+    $msg .= "Abra um sorriso Na Casa da Joana :)<br><br><br><br>
 
     <table border='0' cellpadding='0' cellspacing='0' height='0' width='600' style='border-top:10px solid orangered; background-color:#f7f7ef;'>
     <tbody>

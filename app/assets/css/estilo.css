@@ -3,10 +3,15 @@
     padding: 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 body {
     background: #f0efe4;
     height: 100%;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Asap', sans-serif;
     font-weight: 400;
 }
 
@@ -27,17 +32,19 @@ img {
 #quadro {
     margin-top: 115px;
     border: 1px solid orangered;
-    /*width: 100%;
-    padding: 20px;
-    height: 500px;*/
     background: #FFFFFF;
-    width: 100%;
+    width: 90%;
     position: relative;
-    /* calcular aspect-ratio 3:4
-    B / (A / 100) = C% 
-    padding-top: calc( 4 / (3/100))%; */
     padding-top: 133.333333%;
     background-size: 100% 100%;
+    height: calc( 100% * 1);
+    /*
+    width: 3508 px
+    height: 4960 px
+    */
+    /*-ms-transform: scale(2, 3);
+    -webkit-transform: scale(2, 3);
+    transform: scale(2, 3);*/
 }
 
 .content {
@@ -60,6 +67,7 @@ img {
 
 .paleta span {
     display: block;
+    color: #666;
 }
 
 #addButton {
@@ -85,8 +93,9 @@ img {
 
 .bg-custom span,
 .paleta span {
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 5px;
+    color: #666;
 }
 
 
@@ -259,7 +268,8 @@ h4 {
     padding-bottom: 10px;
     border-bottom: 1px solid #999999;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 20px;
+    color: #666;
 }
 
 .col20 {
@@ -299,8 +309,27 @@ h4 {
     color: #666666;
 }
 
+.btn-apagar-box i {
+    font-size: 19px;
+}
+
+.btn-apagar-box:hover {
+    background: #c2c2c2;
+}
+
+.btn-apagar-box {
+    cursor: pointer;
+}
+
 .btn-limpar {
     color: #FFFFFF;
+    border-radius: 0;
+    background: #CCCCCC;
+    cursor: pointer;
+}
+
+.btn-limpar:hover {
+    background: #c2c2c2;
 }
 
 .btn-align {
@@ -381,59 +410,60 @@ h4 {
     font-size: 11px;
     line-height: 13px;
     float: left;
-    margin-left: 10px;
+    margin-left: 18px;
     position: relative;
     text-align: left;
+    color: #666666;
 }
 
 .botoes input[type=checkbox] {
     position: relative;
     float: left;
     top: 14px;
-    right: 12px;
+    right: 0px;
 }
 
 .btn {
     text-transform: uppercase;
 }
 
-.font-1 {
+#font-1 {
     font-family: 'Amatic SC', cursive;
 }
 
-.font-2 {
+#font-2 {
     font-family: 'Arbutus Slab', serif;
 }
 
-.font-3 {
+#font-3 {
     font-family: 'Archivo Black', sans-serif;
 }
 
-.font-4 {
+#font-4 {
     font-family: 'Boogaloo', cursive;
 }
 
-.font-5 {
+#font-5 {
     font-family: 'Bowlby One SC', cursive;
 }
 
-.font-6 {
+#font-6 {
     font-family: 'Bree Serif', serif;
 }
 
-.font-7 {
+#font-7 {
     font-family: 'Capriola', sans-serif;
 }
 
-.font-8 {
+#font-8 {
     font-family: 'Caveat', cursive;
 }
 
-.font-9 {
+#font-9 {
     font-family: 'Pacifico', cursive;
 }
 
-.font-10 {
+#font-10 {
     font-family: 'Shrikhand', cursive;
 }
 
@@ -481,6 +511,26 @@ h4 {
     cursor: move;
 }
 
+.ferramentas {
+    margin-top: 10px;
+}
+
+
+/*.box::after {
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    bottom: 0px;
+    left: -15px;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: normal;
+    text-decoration: inherit;
+    content: '\f014';
+    cursor: "pointer" !important;
+}*/
+
 .ui-rotatable-handle {
     background: url("https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/rotate.png");
     background-repeat: no-repeat;
@@ -492,8 +542,7 @@ h4 {
     right: -16px;
 }
 
-
-/*.ui-rotatable-handle-sw {
+.ui-rotatable-handle-sw {
     bottom: -27px;
     left: -27px;
 }
@@ -511,10 +560,16 @@ h4 {
 .ui-rotatable-handle-ne {
     top: -16px;
     right: -16px;
-}*/
+}
 
 
 /* ################################ MOLDURAS ########################## */
+
+#bt-voltar {
+    border-radius: 0;
+    color: #FFF;
+    font-weight: 600;
+}
 
 .img-parabens {
     margin-top: 50px;
@@ -542,6 +597,7 @@ h4 {
     display: block;
     font-weight: bold;
     margin-bottom: 2px;
+    color: #666;
 }
 
 .descricao span.preco {
@@ -582,12 +638,17 @@ h4 {
 .btn-success {
     background: #99cc66 !important;
     border-color: #99cc66;
+    border-radius: 0;
+}
+
+.btn-success:hover {
+    border-color: #99cc66;
 }
 
 .papel.imgData img {
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .papel.imgData img:before,
@@ -622,37 +683,37 @@ h4 {
 
 .moldura-preta.imgData img {
     border: 7px solid #000000;
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .moldura-amarela.imgData img {
     border: 7px solid #ffd801;
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .moldura-vermelha.imgData img {
     border: 7px solid #a02424;
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 5px 5px 50px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 5px 5px 50px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 5px 5px 50px rgba(0, 0, 0, 1);
 }
 
 .moldura-crua.imgData img {
     border: 7px solid #e7c9a4;
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 1);
 }
 
 .moldura-branca.imgData img {
     border: 7px solid #FFFFFF;
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .imgData img {
@@ -663,9 +724,10 @@ h4 {
 }
 
 .imgData:hover img {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
     opacity: 1;
+    cursor: pointer;
 }
 
 
@@ -678,6 +740,9 @@ h4 {
     margin-top: 70px;
     border-top: 1px solid orangered;
     padding: 15px 50px;
+    background-image: url("../img/rodape_papel.jpg");
+    background-position: left bottom;
+    background-repeat: repeat-x;
 }
 
 .carrinho h3,
@@ -793,10 +858,19 @@ h4 {
 }
 
 #calcula_frete {
-    background: none;
+    background: orangered;
     border: none;
-    position: relative;
-    right: 25px;
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 0;
+    margin-right: 4px;
+    margin-top: 10px;
+}
+
+.carrinho .escolha-frete,
+.carrinho .total-frete,
+.carrinho #bt-finalizar {
+    display: none;
 }
 
 
@@ -854,6 +928,7 @@ h4 {
     float: right;
     margin: 30px 0;
     font-weight: 600;
+    border-radius: 0;
 }
 
 button.btn.btn-default.btn-voltar {
@@ -1025,16 +1100,94 @@ button.btn.btn-default.btn-voltar {
     float: right;
 }
 
-#boleto{
-    padding:20px 100px 50px 100px;
+#boleto,
+#debito {
+    padding: 20px 100px 50px 100px;
 }
 
-#boleto p{
+#boleto p,
+#debito p {
     color: #999;
     font-size: 14px;
     font-weight: 600;
 }
 
-#boleto button{
-    float:right;
+#boleto button,
+#debito button {
+    float: right;
+}
+
+.obrigado {
+    margin-top: 70px;
+    padding: 15px 50px;
+}
+
+.poster {
+    text-align: center;
+    padding-top: 105px;
+}
+
+#img-poster {
+    width: 315px;
+    height: auto;
+    border: 15px solid #FFFFFF;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5)
+}
+
+#img-poster:before,
+#img-poster:after {
+    position: absolute;
+    width: 40%;
+    height: 10px;
+    content: ' ';
+    left: 12px;
+    bottom: 12px;
+    background: transparent;
+    -webkit-transform: skew(-5deg) rotate(-5deg);
+    -moz-transform: skew(-5deg) rotate(-5deg);
+    -ms-transform: skew(-5deg) rotate(-5deg);
+    -o-transform: skew(-5deg) rotate(-5deg);
+    transform: skew(-5deg) rotate(-5deg);
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+#img-poster:after {
+    left: auto;
+    right: 12px;
+    -webkit-transform: skew(5deg) rotate(5deg);
+    -moz-transform: skew(5deg) rotate(5deg);
+    -ms-transform: skew(5deg) rotate(5deg);
+    -o-transform: skew(5deg) rotate(5deg);
+    transform: skew(5deg) rotate(5deg);
+}
+
+.obrigado h6 {
+    position: relative;
+    top: -55px;
+    left: 155px;
+    color: #666;
+    font-weight: 600;
+}
+
+.box-share {
+    background-color: #FFFFFF;
+    margin-left: 30px;
+    padding: 20px;
+    margin-top: 50px;
+    max-width: 560px;
+    color: #666;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#bt-recomecar {
+    width: 33.33%;
+    margin: 70px auto 0 auto;
+    text-transform: uppercase;
+    display: block;
+    border-radius: 0;
+    font-weight: 600;
 }

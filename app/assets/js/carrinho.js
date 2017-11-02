@@ -156,10 +156,12 @@ $(document).ready(function() {
 
                             //console.log((dados.pac).toFixed(2) + " - " + dados.prazo_pac + " dias");
 
-                            $(".preco_pac").text((dados.pac).toFixed(2) + " - " + dados.prazo_pac + " dias");
-                            $(".preco_sedex").text((dados.sedex).toFixed(2) + " - " + dados.prazo_sedex + " dias");
+                            $(".preco_pac").text((dados.pac).toFixed(2));
+                            $(".preco_sedex").text((dados.sedex).toFixed(2));
 
                             localStorage.setItem('frete', JSON.stringify(dados));
+
+                            $(".escolha-frete").show();
 
                             $("#loading").hide();
 
@@ -202,7 +204,7 @@ $(document).ready(function() {
         localStorage.setItem('frete', JSON.stringify(frete));
 
         let total_carrinho = parseFloat($(".total-carrinho td span").text());
-        console.log(frete);
+        //console.log(frete);
         if ($(this).val() == 'pac') {
             let soma = frete.pac + total_carrinho;
             $(".total-pedido").text(soma.toFixed(2));
@@ -214,6 +216,8 @@ $(document).ready(function() {
             $(".valor-frete").text((frete.sedex).toFixed(2));
             localStorage.setItem('total', soma);
         }
+        $(".total-frete").show();
+        $(".carrinho #bt-finalizar").show();
 
 
     });

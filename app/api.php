@@ -1,5 +1,6 @@
 <?php
-$url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/";
+//$url = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/";
+$url = "https://ws.pagseguro.uol.com.br/v2/transactions/";
 $dados = $_POST['dados'];
 $data = http_build_query($dados);
 //echo $data;
@@ -13,7 +14,8 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
 $output = curl_exec($curl);
 curl_close($curl);
-
+//echo $output;
+//exit();
 $xml = simplexml_load_string($output);
 echo json_encode($xml);
 ?>

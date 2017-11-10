@@ -1,6 +1,8 @@
 <?php
-$url = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
-$data = "email=michelmfreitas@gmail.com&token=705A5625690E4CAA91E6AFB178B047EA";
+$url = "https://ws.pagseguro.uol.com.br/v2/sessions"; //produção
+//$url = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
+$data = "email=crieseuposter@gmail.com&token=843ACE66F983489FA42D993221B78D27"; //produção
+//$data = "email=crieseuposter@gmail.com&token=854191901CF44E568067826327063C41";
 $curl = curl_init($url);
 
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -10,22 +12,25 @@ curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
 $xml = curl_exec($curl);
+//echo $xml;
 
 if ($xml == 'Unauthorized') {
     //Insira seu código de prevenção a erros
+    //echo $xml;
     echo "Erro ao integrar com o PagSeguro.";
     //header('Location: erro.php?tipo=autenticacao');
     exit; //Mantenha essa linha
 }
 
 $xml= simplexml_load_string($xml);
+//echo $xml; exit;
 
-if (count($xml -> error) > 0) {
+/*if (count($xml -> error) > 0) {
     //Insira seu código de tratamento de erro, talvez seja útil enviar os códigos de erros.
     echo "Dados inválidos do PagSeguro.";
     //header('Location: erro.php?tipo=dadosInvalidos');
     exit;
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -54,10 +59,11 @@ if (count($xml -> error) > 0) {
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <script src="assets/js/pagamento.js"></script>
 
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-    <!--<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>-->
+    <!--<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script> -->
+    <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 
     <script type="text/javascript">
+    console.log('<?php echo $xml->id; ?>');
         PagSeguroDirectPayment.setSessionId('<?php echo $xml->id; ?>');
 
         $(document).ready(function(){
@@ -150,6 +156,7 @@ if (count($xml -> error) > 0) {
                     $(".bandeira").val() == ""
                 ){
                     alert("Preencha todos os campos corretamente.");
+                    $("#loading").hide();
                     return false;
                 }
                 
@@ -180,15 +187,17 @@ if (count($xml -> error) > 0) {
                                 //console.log(encodeURIComponent(url));
 
                         var dados_url = {
-                            email: 'michelmfreitas@gmail.com',
-                            token: '705A5625690E4CAA91E6AFB178B047EA',
+                            //email: 'michelmfreitas@gmail.com',
+                            //token: '705A5625690E4CAA91E6AFB178B047EA',
+                            email: 'crieseuposter@gmail.com',
+                            token: '843ACE66F983489FA42D993221B78D27', //produção
+                            //token: '854191901CF44E568067826327063C41',
                             paymentMode: 'default',
                             paymentMethod: 'creditCard',
                             currency: 'BRL',
                             extraAmount: '0.00',
                             itemId1: '0001',
                             itemDescription1: 'Quadros personalizados Na Casa Da Joana',
-                            receiverEmail: 'michelmfreitas@gmail.com',
                             itemAmount1: total,
                             itemQuantity1: 1,
                             reference: 'NCDJ-'+((new Date().getTime() / 1000) * Math.random()/10000),
@@ -196,8 +205,8 @@ if (count($xml -> error) > 0) {
                             senderCPF: `${comprador.cpf}`,
                             senderAreaCode: `${comprador.ddd}`,
                             senderPhone:`${comprador.phone}`,
-                            //senderEmail:`${comprador.email}`,
-                            senderEmail:`c51676115025140639469@sandbox.pagseguro.com.br`,
+                            senderEmail:`${comprador.email}`,
+                            //senderEmail:`c47323087046186728590@sandbox.pagseguro.com.br`,
                             senderHash:`${hashComprador}`,
                             shippingAddressStreet:`${comprador.endereco}`,
                             shippingAddressNumber:`${comprador.numero}`,
@@ -231,11 +240,14 @@ if (count($xml -> error) > 0) {
                             type: 'POST',
                             data: { dados: dados_url },
                             success: function (data) {
-                                processaCompra(data); 
+                                
                             },
                             error: function(erro){
                                 alert("Cannot get data");
-                                console.log(erro);
+                                //console.log(erro);
+                            },
+                            complete: function(data){
+                                processaCompra(data); 
                             }
                         });
 
@@ -246,7 +258,7 @@ if (count($xml -> error) > 0) {
                                 
                     },
                     error: function(response) {
-                        console.log("TOKEN error", response);
+                        //console.log("TOKEN error", response);
                         alert("Dados do cartão de crédito inválidos.");
                         return false;
                         
@@ -278,21 +290,23 @@ if (count($xml -> error) > 0) {
                 total = parseInt(total).toFixed(2);
                 var comprador = JSON.parse(localStorage.getItem('dadosUsuario'));
                         
-                comprador.ddd = $("#telefone").val().replace(/[^\d]+/g,'').slice(0,2);
-                comprador.phone = $("#telefone").val().replace(/[^\d]+/g,'').slice(2,12);
-                comprador.cpf = $("input#cpf_cartao").val().replace(/[^\d]+/g,'');
+                comprador.ddd = comprador.telefone.replace(/[^\d]+/g,'').slice(0,2);
+                comprador.phone = comprador.telefone.replace(/[^\d]+/g,'').slice(2,12);
+                comprador.cpf = comprador.cpf.replace(/[^\d]+/g,'');
                 comprador.cep = comprador.cep.replace(/[^\d]+/g,'');
 
+                //console.log(comprador);
+
                 var dados_url = {
-                    email: 'michelmfreitas@gmail.com',
-                    token: '705A5625690E4CAA91E6AFB178B047EA',
+                    email: 'crieseuposter@gmail.com',
+                    token: '843ACE66F983489FA42D993221B78D27', //prod
+                    //token: '854191901CF44E568067826327063C41',
                     paymentMode: 'default',
                     paymentMethod: 'boleto',
                     currency: 'BRL',
-                    extraAmount: '1.00',
+                    extraAmount: '0.00',
                     itemId1: '0001',
                     itemDescription1: 'Quadros personalizados Na Casa Da Joana',
-                    receiverEmail: 'michelmfreitas@gmail.com',
                     itemAmount1: total,
                     itemQuantity1: 1,
                     reference: 'NCDJ-'+((new Date().getTime() / 1000) * Math.random()/10000),
@@ -300,8 +314,8 @@ if (count($xml -> error) > 0) {
                     senderCPF: `${comprador.cpf}`,
                     senderAreaCode: `${comprador.ddd}`,
                     senderPhone:`${comprador.phone}`,
-                    //senderEmail:`${comprador.email}`,
-                    senderEmail:`c51676115025140639469@sandbox.pagseguro.com.br`,
+                    senderEmail:`${comprador.email}`,
+                    //senderEmail:`c47323087046186728590@sandbox.pagseguro.com.br`,
                     senderHash:`${hashComprador}`,
                     shippingAddressStreet:`${comprador.endereco}`,
                     shippingAddressNumber:`${comprador.numero}`,
@@ -321,16 +335,16 @@ if (count($xml -> error) > 0) {
                     data: { dados: dados_url },
                     success: function (data) {
                         dados = JSON.parse(data);
-                        console.log(dados.paymentLink);
-                        window.open(dados.paymentLink);
+                        //console.log(dados.paymentLink);
+                        window.open(dados.paymentLink, "_blank");                        
                         processaCompra(data);
                     },
                     error: function(erro){
                         alert("Cannot get data");
-                        console.log(erro);
+                        //console.log(erro);
                     },
-                    complete: function(response) {
-                        $("#loading").hide();
+                    complete: function(data) {
+                        //$("#loading").hide();
                     }
                 });                   
 
@@ -348,22 +362,24 @@ if (count($xml -> error) > 0) {
                 total = parseInt(total).toFixed(2);
                 var comprador = JSON.parse(localStorage.getItem('dadosUsuario'));
                         
-                comprador.ddd = $("#telefone").val().replace(/[^\d]+/g,'').slice(0,2);
-                comprador.phone = $("#telefone").val().replace(/[^\d]+/g,'').slice(2,12);
-                comprador.cpf = $("input#cpf_cartao").val().replace(/[^\d]+/g,'');
+                comprador.ddd = comprador.telefone.replace(/[^\d]+/g,'').slice(0,2);
+                comprador.phone = comprador.telefone.replace(/[^\d]+/g,'').slice(2,12);
+                comprador.cpf = comprador.cpf.replace(/[^\d]+/g,'');
                 comprador.cep = comprador.cep.replace(/[^\d]+/g,'');
 
+                //console.log(comprador);
+
                 var dados_url = {
-                    email: 'michelmfreitas@gmail.com',
-                    token: '705A5625690E4CAA91E6AFB178B047EA',
+                    email: 'crieseuposter@gmail.com',
+                    token: '843ACE66F983489FA42D993221B78D27',
+                    //token: '854191901CF44E568067826327063C41',
                     paymentMode: 'default',
                     paymentMethod: 'online_debit',
                     bankName: 'itau',
                     currency: 'BRL',
-                    extraAmount: '1.00',
+                    extraAmount: '0.00',
                     itemId1: '0001',
                     itemDescription1: 'Quadros personalizados Na Casa Da Joana',
-                    receiverEmail: 'michelmfreitas@gmail.com',
                     itemAmount1: total,
                     itemQuantity1: 1,
                     reference: 'NCDJ-'+((new Date().getTime() / 1000) * Math.random()/10000),
@@ -371,8 +387,8 @@ if (count($xml -> error) > 0) {
                     senderCPF: `${comprador.cpf}`,
                     senderAreaCode: `${comprador.ddd}`,
                     senderPhone:`${comprador.phone}`,
-                    //senderEmail:`${comprador.email}`,
-                    senderEmail:`c51676115025140639469@sandbox.pagseguro.com.br`,
+                    senderEmail:`${comprador.email}`,
+                    //senderEmail:`c47323087046186728590@sandbox.pagseguro.com.br`,
                     senderHash:`${hashComprador}`,
                     shippingAddressStreet:`${comprador.endereco}`,
                     shippingAddressNumber:`${comprador.numero}`,
@@ -384,23 +400,31 @@ if (count($xml -> error) > 0) {
                     shippingAddressCountry:'BRA'
                 }
 
+                //console.log(dados_url);
+
                 $.ajax({
                     url: "api.php",
                     type: 'POST',
                     data: { dados: dados_url },
                     success: function (data) {
+                        //console.log(data);
                         dados = JSON.parse(data);
-                        //console.log(dados);
-                        window.open(dados.paymentLink);
+                        console.log(dados);
+                        window.open(dados.paymentLink, "_blank");
                         //geraPDF(dados_url.reference);
-                        processaCompra(data);
+                        
                     },
                     error: function(erro){
                         alert("Cannot get data");
-                        console.log(erro);
+                        //console.log(erro);
                     },
-                    complete: function(response) {
+                    complete: function(data) {
+                        console.log('acabou o processamento', data);
+                        $("#loading").hide();
+                        /*dados = JSON.parse(data);
                         console.log('complete...');
+                        processaCompra(data);
+                        window.open(dados.paymentLink);*/
                     }
                 });
             });
@@ -473,7 +497,7 @@ if (count($xml -> error) > 0) {
                     },
                     error: function(erro){
                         alert("Cannot get data");
-                        console.log(erro);
+                        //console.log(erro);
                     }
                 });
             }
@@ -528,28 +552,28 @@ if (count($xml -> error) > 0) {
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label for="ncartao">Número do cartão:</label>
-                                <input type="text" class="form-control" id="ncartao" value="4716322063491869"><span id='bandeira'></span>
+                                <input type="text" class="form-control" id="ncartao" value=""><span id='bandeira'></span>
                                 <input type="hidden" class="form-control bandeira" value="">
                             </div>
                             <div class="form-group">
                                 <label for="titular_cartao">Nome do titular do cartão:</label>
-                                <input type="text" class="form-control" id="titular_cartao" value="Michel">
+                                <input type="text" class="form-control" id="titular_cartao" value="">
                             </div>
                             <div class="form-group">
                                 <label for="cpf_cartao">CPF do titular do cartão:</label>
-                                <input type="text" class="form-control" id="cpf_cartao" value="056.095.556-12">
+                                <input type="text" class="form-control" id="cpf_cartao" value="">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="data_nascimento">Nascimento do titular:</label>
-                                        <input type="text" class="form-control" id="data_nascimento" value='25/03/1981'>
+                                        <input type="text" class="form-control" id="data_nascimento" value=''>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="telefone">Telefone do titular:</label>
-                                        <input type="text" class="form-control" id="telefone" value='(27) 9994-94106'>
+                                        <input type="text" class="form-control" id="telefone" value=''>
                                     </div>
                                 </div>
                             </div>
@@ -565,7 +589,7 @@ if (count($xml -> error) > 0) {
                                         <option value="02">02</option>
                                         <option value="03">03</option>
                                         <option value="04">04</option>
-                                        <option value="05" selected>05</option>
+                                        <option value="05">05</option>
                                         <option value="06">06</option>
                                         <option value="07">07</option>
                                         <option value="08">08</option>
@@ -577,7 +601,7 @@ if (count($xml -> error) > 0) {
                                     <span>Ano:</span>
                                     <select name="validade_ano" id="validade_ano">
                                         <option value="2017">2017</option>
-                                        <option value="2018" selected>2018</option>
+                                        <option value="2018">2018</option>
                                         <option value="2019">2019</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -589,7 +613,7 @@ if (count($xml -> error) > 0) {
                                 </div>
                                 <div class="form-group col-sm-5">
                                     <label for="codigo_seguranca">Código de segurança:</label>
-                                    <input type="text" class="form-control" id="codigo_seguranca" value="978">
+                                    <input type="text" class="form-control" id="codigo_seguranca" value="">
                                 </div>
                             </div>
                             

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Asap:500,600,700|Amatic+SC|Arbutus+Slab|Archivo+Black|Boogaloo|Bowlby+One+SC|Bree+Serif|Capriola|Caveat|Pacifico|Shrikhand" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/estilo.css" type="text/css">
+
+    <!--<script src="https://use.fontawesome.com/f4499b2d17.js"></script>-->
+    <script src="assets/js/font-awesome.js"></script>
+    <link rel="stylesheet" href="assets/css/font-awesome.css" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="assets/js/html2canvas.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/jquery.ui.rotatable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" type="text/css">
+
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+    <script src="assets/js/lib.js"></script>
+
+    <!--<script type="text/javascript" src="https://cdnjs.com/libraries/popper.js" async></script>
+    <script type="text/javascript" src="https://cdnjs.com/libraries/tooltip.js" async></script>-->
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-5 col-sm-6" id="conteudo-quadro">
+
+                <section id="quadro" data-toggle="tooltip" title="Solte a imaginação e crie seu quadro personalizado! :)">
+                    <div class="content" id="content">
+                        <div class="box" data-target="1"><span class="texto">Dê dois cliques para começar.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="ferramentas">
+                    <button class="btn btn-default btn-apagar-box" title="Apagar seleção"><i class="fa fa-trash-o"></i></button>
+                    <a href='#' class='bt-exemplos' data-toggle="modal" data-target="#ModalExemplos">Veja alguns exemplos</a>
+                </div>
+
+            </div>
+
+            <div class="col-md-7 col-sm-6 ml-auto col-offset-1">
+
+                <header>
+                    <img src="assets/img/logo.jpg" alt="" title="" />
+                </header>
+
+
+                <h4>Texto</h4>
+                <div class="row barra-texto">
+
+                    <div class="col-md-2">
+                        <button class="btn-align" style="width:100%;" title="Adicionar Texto" id="addButton">
+                            <i class=" fa fa-font" style="font-size:20px;"></i>
+                            <i class="fa fa-plus icone-menor"></i>
+                            <span>Novo Texto</span>
+                        </button>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select name="fonte" id="fonte">
+                            <option value="font-1" id="font-1" checked>Amatic SC</option>
+                            <option value="font-2" id="font-2">Arbutus Slab</option>
+                            <option value="font-3" id="font-3">Archivo Black</option>
+                            <option value="font-4" id="font-4">Boogaloo</option>
+                            <option value="font-5" id="font-5">Bowlby One SC</option>
+                            <option value="font-6" id="font-6">Bree Serif</option>
+                            <option value="font-7" id="font-7">Capriola</option>
+                            <option value="font-8" id="font-8">Caveat</option>
+                            <option value="font-9" id="font-9">Pacifico</option>
+                            <option value="font-10" id="font-10">Shrikhand</option>
+                        </select>
+                        <select name="font-size" id="font-size">
+                                <option value="0">1</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3" selected>4</option>
+                                <option value="4">5</option>
+                                <option value="5">6</option>
+                                <option value="6">7</option>
+                                <option value="7">8</option>
+                            </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn-align align-left"><i class="fa fa-align-left"></i></button>
+                        <button class="btn-align align-center" style='border-right: 0; border-left: 0;'><i class="fa fa-align-center"></i></button>
+                        <button class="btn-align align-right"><i class="fa fa-align-right"></i></button>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="paleta">
+                            <div class="text-item default-1" data-color="default-1"></div>
+                            <div class="text-item default-2" data-color="default-2"></div>
+                            <div class="text-item default-3" data-color="default-3"></div>
+                            <div class="text-item default-4" data-color="default-4"></div>
+                            <div class="text-item default-5" data-color="default-5"></div>
+                            <div class="text-item default-6" data-color="default-6"></div>
+                        </div>
+                        <div class="paleta">
+                            <div class="text-item default-7" data-color="default-7"></div>
+                            <div class="text-item default-8" data-color="default-8"></div>
+                            <div class="text-item default-9" data-color="default-9"></div>
+                            <div class="text-item default-10" data-color="default-10"></div>
+                            <div class="text-item default-11" data-color="default-11"></div>
+                            <div class="text-item default-12" data-color="default-12"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <h4>Fundo</h4>
+                <div class="row barra-fundo">
+
+                    <div class="col20 paleta"><span>PB</span></div>
+                    <div class="col20 paleta"><span>Quentes</span></div>
+                    <div class="col20 paleta"><span>Winter is coming</span></div>
+                    <div class="col20 paleta"><span>Flamingo</span></div>
+                    <div class="col20 paleta"><span>Nordic</span></div>
+
+
+                    <div class="col20 paleta">
+                        <div class="color-item black" data-color="black"></div>
+                        <div class="color-item grey-60" data-color="grey-60"></div>
+                        <div class="color-item grey-40" data-color="grey-40"></div>
+                        <div class="color-item grey-20" data-color="grey-20"></div>
+                        <div class="color-item white" data-color="white"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item hot-1" data-color="hot-1"></div>
+                        <div class="color-item hot-2" data-color="hot-2"></div>
+                        <div class="color-item hot-3" data-color="hot-3"></div>
+                        <div class="color-item hot-4" data-color="hot-4"></div>
+                        <div class="color-item hot-5" data-color="hot-5"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item cold-1" data-color="cold-1"></div>
+                        <div class="color-item cold-2" data-color="cold-2"></div>
+                        <div class="color-item cold-3" data-color="cold-3"></div>
+                        <div class="color-item cold-4" data-color="cold-4"></div>
+                        <div class="color-item cold-5" data-color="cold-5"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item flamingo-1" data-color="flamingo-1"></div>
+                        <div class="color-item flamingo-2" data-color="flamingo-2"></div>
+                        <div class="color-item flamingo-3" data-color="flamingo-3"></div>
+                        <div class="color-item flamingo-4" data-color="flamingo-4"></div>
+                        <div class="color-item flamingo-5" data-color="flamingo-5"></div>
+                    </div>
+
+                    <div class="col20 paleta">
+                        <div class="color-item nordic-1" data-color="nordic-1"></div>
+                        <div class="color-item nordic-2" data-color="nordic-2"></div>
+                        <div class="color-item nordic-3" data-color="nordic-3"></div>
+                        <div class="color-item nordic-4" data-color="nordic-4"></div>
+                        <div class="color-item nordic-5" data-color="nordic-5"></div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row barra-fundo">
+
+                    <div class="col20 bg-custom">
+                        <span>Âncoras</span>
+                        <div class="bg-item ancora" data-color="ancora"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Confetes</span>
+                        <div class="bg-item confetes" data-color="confetes"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Coração</span>
+                        <div class="bg-item coracao" data-color="coracao"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Diversão</span>
+                        <div class="bg-item diversao" data-color="diversao"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Floral</span>
+                        <div class="bg-item floral" data-color="floral"></div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row barra-fundo">
+
+                    <div class="col20 bg-custom">
+                        <span>Geométrico</span>
+                        <div class="bg-item geometrico" data-color="geometrico"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Lar</span>
+                        <div class="bg-item lar" data-color="lar"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Luzes</span>
+                        <div class="bg-item luzes" data-color="luzes"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Montanha</span>
+                        <div class="bg-item montanha" data-color="montanha"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Natural</span>
+                        <div class="bg-item natural" data-color="natural"></div>
+                    </div>
+
+                </div>
+
+                <div class="row barra-fundo">
+
+                    <div class="col20 bg-custom">
+                        <span>Cerveja</span>
+                        <div class="bg-item cerveja" data-color="cerveja"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Vinho</span>
+                        <div class="bg-item vinho" data-color="vinho"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Café</span>
+                        <div class="bg-item cafe" data-color="cafe"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Especial I</span>
+                        <div class="bg-item especial01" data-color="especial01"></div>
+                    </div>
+
+                    <div class="col20 bg-custom">
+                        <span>Especial II</span>
+                        <div class="bg-item especial02" data-color="especial02"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="row botoes" style='margin-top:17px;'>
+                    <div class="col-md-4">
+                        <button class="btn btn-block btn-limpar">Começar de novo</button>
+                    </div>
+                    <div class="col-md-3 ml-auto" style="padding-top:24px;">
+                        <input type="checkbox" name="termos" class="termos">
+                        <span>Li e aceitei os <a href='#' data-toggle='modal' data-target='#modalTermos'>termos e regulamento de compra</a></span>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-block btn-success" id="bt-enviar">Continuar</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="imagem-final"></div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">EDITAR TEXTO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea maxlength="255" class="form-control" rows="3" placeholder="Digite seu texto aqui" id='novo-texto'></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+                    <button type="button" class="btn btn-primary" id='bt-addTexto'>INSERIR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal exemplos -->
+    <div class="modal fade bd-example-modal-lg" id="ModalExemplos" tabindex="-1" role="dialog" aria-labelledby="modalExemplos" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-content">
+                <img src="assets/img/pop-exemplos.jpg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal termos -->
+    <div class="modal fade" id="modalTermos" tabindex="-1" role="dialog" aria-labelledby="modalTermos" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTermos">Termos e Regulamento de compra</h5>
+                </div>
+                <div class="modal-body">
+                        <p>Ao aceitar os  “Termos e Condições”, você declara conhecer integralmente o
+                            presente termo e com ele concordar absolutamente, assumindo a sua
+                            responsabilidade.</p>
+                        
+                        <h3>1. CONTEÚDO DO PÔSTER</h3>
+                        
+                        <p>Todas as imagens recebidas passarão por nossa moderação, podendo ser
+                            reprovadas caso contenham mensagens de cunho preconceituoso, sexista,
+                            que incite a violência física ou moral, ou qualquer outro conteúdo que
+                            seja julgado ofensivo pela equipe de moderação da Na Casa Da Joana.</p>
+                        
+                        <p>Em caso de reprovação da sua estampa, você receberá uma notificação
+                            através do seu e-mail de cadastro com os próximos passos.</p>                        
+                        
+                        <h3>2. PRAZOS E PRODUÇÃO</h3>
+                        
+                        <p>Vamos cuidar da sua criação com todo carinho.<br>
+                        Por isso, temos um prazo de produção antes de enviar o seu pedido:</p>
+                        
+                        <ul>
+                            <li>Pôster sem moldura - até 7 dias úteis</li>
+                            <li>Pôster com moldura - até 10 dias úteis</li>
+                        </ul>
+                        
+                        <p>As cores do pôster poderão sofrer pequenas divergências. Isso é
+                            causado pela diferença de cores e iluminação do monitor.</p>                        
+                        
+                        <h3>3. CONSIDERAÇÕES GERAIS</h3>
+                        
+                        <p>Em caso de arrependimento, o prazo de desistência é de até 7 dias a
+                            contar do recebimento do produto. Por isso, antes de fechar o pedido,
+                            confira as informações digitadas e as customizações inseridas. Nossa
+                            política de Prazos e Trocas é o mesmo vigente em
+                            <a href='http://www.prazosetrocas.nacasadajoana.com.br' target="_blank">www.prazosetrocas.nacasadajoana.com.br</a> (de janeiro de 2014).</p>
+                        
+                        <p>- - - - - </p>
+                        
+                        <p>Se tiver qualquer dúvida, é só nos chamar! :)</p>
+                        <strong>contato@nacasadajoana.com.br</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="teste">
+            <p>Este site não é compatível com este dispositivo.<br>Tente de um aparelho com tela maior para ter uma experiência fantástica!</p>
+            <br><br><a href='http://www.nacasadajoana.com.br'>Vá para o nosso site.</a>
+        </div>
+
+
+</body>
+
+</html>

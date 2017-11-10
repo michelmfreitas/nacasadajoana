@@ -16,9 +16,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
+    <script type="text/javasctipt" src="https://cdnjs.com/libraries/popper.js" async></script>
+    <script type="text/javasctipt" src="https://cdnjs.com/libraries/tooltip.js" async></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
 </head>
 
@@ -30,7 +35,7 @@
             <div class="col">
 
                 <img src="assets/img/parabens.jpg" alt="Parabéns" title="Parabéns" class='img-parabens' />
-                <p class='texto-parabens'><strong>Você acabou de criar o seu pôster Na Casa da Joana! :)</strong><br /> Agora você pode escolher a cor da moldura e a quantidade. Depois, clique em comprar para continuar.</p>
+                <p class='texto-parabens'><strong>Você acabou de criar o seu pôster Na Casa da Joana! :)</strong><br /> Agora escolha a cor da moldura e a quantidade. Você pode escolher quantidades diferentes para cada modelo. :) Depois, clique em comprar para continuar.</p>
 
             </div>
         </div>
@@ -43,7 +48,7 @@
                 <div class='papel imgData' data-target="papel"></div>
                 <div class='descricao'>
                     <span>Sem moldura</span>
-                    <span class="info">Informações</span>
+                    <span class="info" data-toggle="tooltip" data-placement="top" title="Pôster A3 (30x42cm), produzido em papel fotográfico fosco de 160g. Embalado individualmente e enviado em um tupo de papelão rígido.">Informações</span>
                     <span class="preco">R$ 62,00</span>
 
                     <div class="qtde">
@@ -57,8 +62,8 @@
                 <div class='moldura-preta imgData' data-target="preta"></div>
                 <div class='descricao'>
                     <span>Moldura Preta</span>
-                    <span class="info">Informações</span>
-                    <span class="preco">R$ 62,00</span>
+                    <span class="info" data-toggle="tooltip" title="Pôster A3 (30x42cm), produzido em papel microporoso fosco de 160g e emoldurado com madeira e vidro. Enviado em uma caixa de papelão exclusiva.">Informações</span>
+                    <span class="preco">R$ 150,00</span>
 
                     <div class="qtde">
                         <span>Quantidade</span>
@@ -71,8 +76,8 @@
                 <div class='moldura-branca imgData' data-target="branca"></div>
                 <div class='descricao'>
                     <span>Moldura Branca</span>
-                    <span class="info">Informações</span>
-                    <span class="preco">R$ 62,00</span>
+                    <span class="info" data-toggle="tooltip" title="Pôster A3 (30x42cm), produzido em papel microporoso fosco de 160g e emoldurado com madeira e vidro. Enviado em uma caixa de papelão exclusiva.">Informações</span>
+                    <span class="preco">R$ 150,00</span>
 
                     <div class="qtde">
                         <span>Quantidade</span>
@@ -85,8 +90,8 @@
                 <div class='moldura-crua imgData' data-target="crua"></div>
                 <div class='descricao'>
                     <span>Moldura Crua</span>
-                    <span class="info">Informações</span>
-                    <span class="preco">R$ 62,00</span>
+                    <span class="info" data-toggle="tooltip" title="Pôster A3 (30x42cm), produzido em papel microporoso fosco de 160g e emoldurado com madeira e vidro. Enviado em uma caixa de papelão exclusiva.">Informações</span>
+                    <span class="preco">R$ 150,00</span>
 
                     <div class="qtde">
                         <span>Quantidade</span>
@@ -99,8 +104,8 @@
                 <div class='moldura-vermelha imgData' data-target="vermelha"></div>
                 <div class='descricao'>
                     <span>Moldura Vermelha</span>
-                    <span class="info">Informações</span>
-                    <span class="preco">R$ 62,00</span>
+                    <span class="info" data-toggle="tooltip" title="Pôster A3 (30x42cm), produzido em papel microporoso fosco de 160g e emoldurado com madeira e vidro. Enviado em uma caixa de papelão exclusiva.">Informações</span>
+                    <span class="preco">R$ 150,00</span>
 
                     <div class="qtde">
                         <span>Quantidade</span>
@@ -113,8 +118,8 @@
                 <div class='moldura-amarela imgData' data-target="amarela"></div>
                 <div class='descricao'>
                     <span>Moldura Amarela</span>
-                    <span class="info">Informações</span>
-                    <span class="preco">R$ 62,00</span>
+                    <span class="info" data-toggle="tooltip" title="Pôster A3 (30x42cm), produzido em papel microporoso fosco de 160g e emoldurado com madeira e vidro. Enviado em uma caixa de papelão exclusiva.">Informações</span>
+                    <span class="preco">R$ 150,00</span>
 
                     <div class="qtde">
                         <span>Quantidade</span>
@@ -123,6 +128,8 @@
                 </div>
             </div>
         </div>
+
+        <br><br>
 
         <div class="row">
             <div class="col botoes">
@@ -137,6 +144,11 @@
 
     <br><br><br>
 
+    <div id="teste">
+            <p>Este site não é compatível com este dispositivo.<br>Tente de um aparelho com tela maior para ter uma experiência fantástica!</p>
+            <br><br><a href='http://www.nacasadajoana.com.br'>Vá para o nosso site.</a>
+        </div>
+
 </body>
 
 <script type="text/javascript">
@@ -150,7 +162,7 @@
 
 
             var qtde = $(this).parent().find('div.descricao .qtde input').val();
-            $('div.descricao .qtde input').val(0)
+            //$('div.descricao .qtde input').val(0)
             qtde++;
             console.log($(this).attr("data-target"));
             if (qtde <= 10) {
@@ -165,20 +177,31 @@
             let campos = $("input");
             let carrinho = [];
 
+            n_itens = 0;
+
             for (var i = 0; i < campos.length; i++) {
                 if (campos[i].value > 0) {
+                    n_itens++;
                     carrinho.push({
                         'item': campos.eq(i).attr("data-description"),
                         'quantidade': campos[i].value
                     });
                 }
             }
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-            window.location.href = 'carrinho.html';
+
+            //se tiver ao menos um item no carrinho
+            if (n_itens > 0) {
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                window.location.href = 'carrinho.html';
+            } else {
+                alert("Você precisa escolher pelo menos um item para continuar.");
+                return false;
+            }
+
         });
 
         $("#bt-voltar").on("click", function() {
-            console.log('voltando...');
+            //console.log('voltando...');
             history.back();
         });
 

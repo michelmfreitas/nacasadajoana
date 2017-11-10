@@ -1,7 +1,10 @@
 $(document).ready(function() {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     $("#telefone").mask("(00) 0000-00009");
     $("#cep").mask('00000-000');
+    $("#cpf").mask('000.000.000-00');
 
     var enderecoUsuario = localStorage.getItem('enderecoUsuario');
     dados = JSON.parse(enderecoUsuario);
@@ -34,7 +37,8 @@ $(document).ready(function() {
             $("#bairro").val() == "",
             $("#cidade").val() == "",
             $("#uf").val() == "",
-            $("#pais").val() == ""
+            $("#pais").val() == "",
+            $("#cpf").val() == ""
         ) {
             alert("Há campos não preenchidos no formulário.");
             return false;
@@ -45,6 +49,7 @@ $(document).ready(function() {
             "email": $("#email").val(),
             //"sexo": $(".sexo:checked").val(),
             "telefone": $("#telefone").val(),
+            "cpf": $("#cpf").val(),
             "destinatario": $("#destinatario").val(),
             "endereco": $("#endereco").val(),
             "numero": $("#numero").val(),
@@ -60,7 +65,7 @@ $(document).ready(function() {
         //console.log(cadastro);
         localStorage.setItem('dadosUsuario', JSON.stringify(cadastro));
         window.location.href = 'pagamento.php';
-        
+
     });
 
 

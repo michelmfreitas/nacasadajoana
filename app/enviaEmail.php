@@ -1,6 +1,7 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
+
 require './../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
 
 $carrinho = json_decode($_POST['carrinho'], true);
 //print_r($carrinho);
@@ -70,7 +71,7 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     <strong>Nome: </strong>".$xml['sender']['name']."<br>
     <strong>E-mail: </strong>".$xml['sender']['email']."<br>
     <strong>Telefone: </strong>".$xml['sender']['phone']['areaCode']."-".$xml['sender']['phone']['number']."<br>
-    <strong>CPF: </strong>".$xml['sender']['documents']['document']['value']."<br>
+    
     
     <br>
     <h3>Dados da Entrega</h3>
@@ -105,6 +106,7 @@ $mail->AddReplyTo("contato@nacasadajoana.com.br", "Na Casa Da Joana");
 $mail->AltBody = "Habilite a visualização em HTML!"; // optional, comment out and test
 $address = "michelmfreitas@gmail.com";
 $mail->AddAddress($address, "Michel");
+$mail->AddAddress("contato@nacasadajoana.com.br", "Na Casa Da Joana");
 $mail->Subject = $assunto;
 $mail->MsgHTML($msg);
 $erro = 0;
@@ -198,6 +200,7 @@ $mail->AddReplyTo("contato@nacasadajoana.com.br", "Na Casa Da Joana");
 $mail->AltBody = "Habilite a visualização em HTML!"; // optional, comment out and test
 $address = "michelmfreitas@gmail.com";
 $mail->AddAddress($address, "Michel");
+$mail->AddAddress($xml['sender']['email'], $xml['sender']['nome']);
 $mail->Subject = $assunto;
 $mail->MsgHTML($msg);
 

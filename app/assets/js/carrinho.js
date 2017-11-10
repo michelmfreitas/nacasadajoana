@@ -39,12 +39,13 @@ $(document).ready(function() {
 
 
     $("#tbl-carrinho").append(linhas);
-    $("#tbl-carrinho").append(`<tr class='total-carrinho'><td colspan='4'><strong style='color:orangered;'>Total:</strong> R$ <span>${total_carrinho}</span>,00</td></tr>`);
+    $("#tbl-carrinho").append(`<tr class='total-carrinho'><td colspan='4'><strong style='color:#f46943;'>Total:</strong> R$ <span>${total_carrinho}</span>,00</td></tr>`);
 
     $(":input[type='number']").bind('keyup mouseup', function() {
 
         //limpa cep e calculos
         $("#cep").val('');
+        $(".escolha-frete").hide();
         $(".preco_pac").text("0.00");
         $(".preco_sedex").text("0.00");
         $(".valor-frete").text("0.00");
@@ -125,7 +126,7 @@ $(document).ready(function() {
             if (validacep.test(cep)) {
 
                 var consulta = $.ajax({
-                        url: `http://viacep.com.br/ws/${cep}/json/`,
+                        url: `https://viacep.com.br/ws/${cep}/json/`,
                         method: "GET"
                     })
                     .then((res) => {
@@ -137,11 +138,36 @@ $(document).ready(function() {
 
                 var sedex = "04014";
                 var pac = "04510";
+                var peso = 1;
+                if (quantidade > 1) {
+                    peso = quantidade * peso;
+                }
+
+                var altura = 6;
+                var largura = 25;
+                var diametro = 25;
+                var comprimento = 35;
+
+                var caixas = 1;
+
+                //calculando quantidade de caixas necessárias - cada caixa cabem 3 quadros
+                if (quantidade > 3) {
+                    caixas = (quantidade / 3).toFixed(0);
+                    if ((quantidade % 3) == 1) {
+                        caixas++;
+                    }
+                }
+
+                if (caixas > 1) {
+                    altura = altura * caixas;
+                }
+
+                console.log(`https://correios-server.herokuapp.com/frete/prazo?nCdServico=${sedex},${pac}&sCepOrigem=29050224&sCepDestino=${cep}&nVlPeso=${peso}&nCdFormato=1&nVlComprimento=35&nVlAltura=${altura}&nVlLargura=25&nVlDiametro=25&nVlValorDeclarado=0`, )
 
                 $.ajax({
                     type: "GET",
                     contentType: "application/json; charset=utf-8",
-                    url: `http://correios-server.herokuapp.com/frete/prazo?nCdServico=${sedex},${pac}&sCepOrigem=29050224&sCepDestino=${cep}&nVlPeso=1&nCdFormato=1&nVlComprimento=35&nVlAltura=6&nVlLargura=25&nVlDiametro=25&nVlValorDeclarado=0`,
+                    url: `https://correios-server.herokuapp.com/frete/prazo?nCdServico=${sedex},${pac}&sCepOrigem=29050224&sCepDestino=${cep}&nVlPeso=${peso}&nCdFormato=1&nVlComprimento=35&nVlAltura=6&nVlLargura=25&nVlDiametro=25&nVlValorDeclarado=0`,
                     dataType: "text",
                     success: function(res) {
 
@@ -194,7 +220,12 @@ $(document).ready(function() {
     }
 
     $("#calcula_frete").click(function() {
-        pesquisacep($("#cep").val());
+        let quantidade = 0;
+        let itens = $("input[type=number]");
+        for (var i = 0; i < itens.length; i++) {
+            quantidade = quantidade + parseInt(itens[i].value);
+        }
+        pesquisacep($("#cep").val(), quantidade);
     });
 
     $("input[type='radio']").click(function() {
@@ -255,6 +286,31 @@ $(document).ready(function() {
             return false;
         }
         window.location.href = "cadastro.html";
+    });
+
+    $(".remover-produto").click(function() {
+        var i = $(this).attr('data-item');
+        let carrinho = JSON.parse(localStorage.getItem('carrinho'));
+        let msg;
+        console.log(i);
+        if (carrinho.length == 1) {
+            msg = "Se você apagar este item, será redirecionado para a página anterior.";
+        } else {
+            msg = "";
+        }
+        let decisao = confirm("Tem certeza que deseja apagar este item? " + msg);
+        if (decisao) {
+            carrinho.splice(i, 1);
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            $("#tbl-carrinho tr.produto[data-linha=" + i + "]").remove();
+            if (carrinho.length == 0) {
+                window.location.href = 'escolherMoldura.html';
+            } else {
+                window.location.reload();
+            }
+        } else {
+            return false;
+        }
     });
 
 });

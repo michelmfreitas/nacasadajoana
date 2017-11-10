@@ -23,6 +23,18 @@
 
     <script src="assets/js/cadastro.js"></script>
 
+    <script type="text/javasctipt" src="https://cdnjs.com/libraries/popper.js" async></script>
+    <script type="text/javasctipt" src="https://cdnjs.com/libraries/tooltip.js" async></script>
+
+    <style>
+        .tooltip {
+            top: -10px !important;
+        }
+        
+        .tooltip-inner {
+            padding: 20px 10px !important;
+        }
+    </style>
 
 </head>
 
@@ -31,7 +43,7 @@
     <div class="cadastro">
 
         <h3>Criar novo cadastro</h3>
-        <h6>Preencha todos o seu endereço ou da pessoa que receberá<br>o pôster que você acabou de criar. :)</h6>
+        <h6>Preencha abaixo as informações para envio do quadro que acabou de criar.</h6>
 
         <div id="frmCadastro">
 
@@ -68,7 +80,23 @@
                 </div>
 
                 <div class="col-sm-1 question">
-                    <i class="fa fa-question-circle"></i>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" title="Seu primeiro nome ou de quem vai receber o pôster."></i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" class="form-control" id="telefone" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="cpf">CPF:</label>
+                        <input type="text" class="form-control" id="cpf" required>
+                    </div>
                 </div>
             </div>
 
@@ -152,6 +180,11 @@
     </div>
 
     <br><br><br>
+
+    <div id="teste">
+            <p>Este site não é compatível com este dispositivo.<br>Tente de um aparelho com tela maior para ter uma experiência fantástica!</p>
+            <br><br><a href='http://www.nacasadajoana.com.br'>Vá para o nosso site.</a>
+        </div>
 
 </body>
 

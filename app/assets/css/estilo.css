@@ -29,34 +29,82 @@ img {
     width: auto;
 }
 
+#home {
+    margin-top: 20px;
+    color: #999;
+    line-height: 22px;
+}
+
+#home h4 {
+    border-bottom: none;
+    margin: 70px 0 30px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+#home .btn-1,
+#home .btn-2,
+#home .btn-3 {
+    font-weight: 600;
+}
+
+#home .btn-1 {
+    width: 80%;
+}
+
+#home .btn-2 {
+    width: 70%;
+    margin-left: 25px;
+    position: relative;
+    top: -100px;
+}
+
+#home .btn-3 {
+    width: 35%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+#home .botao-topo {
+    text-align: right;
+    margin-top: 35px;
+}
+
+#home .texto {
+    padding-top: 30px;
+}
+
 #quadro {
-    margin-top: 115px;
-    border: 1px solid orangered;
+    margin-top: 190px;
     background: #FFFFFF;
-    width: 90%;
+    width: 100%;
+    max-width: 425px;
     position: relative;
     padding-top: 133.333333%;
     background-size: 100% 100%;
-    height: calc( 100% * 1);
+    box-shadow: 2px 2px 2px #333;
+    /*height: calc( 100% * 1);
     /*
     width: 3508 px
-    height: 4960 px
+    height: 4940 px
     */
     /*-ms-transform: scale(2, 3);
     -webkit-transform: scale(2, 3);
     transform: scale(2, 3);*/
 }
 
-.content {
+#content {
     position: absolute;
-    top: 5%;
-    left: 8%;
-    bottom: 5%;
-    right: 8%;
+    top: 2.5%;
+    left: 4%;
+    bottom: 2.5%;
+    right: 4%;
     line-height: 32px;
     font-size: 32px;
     border: 1px dashed #999999;
     display: block;
+    background-size: 100% 100%;
 }
 
 .paleta {
@@ -82,6 +130,14 @@ img {
 
 #addButon .fa-font {
     font-size: 13px !important;
+}
+
+.barra-texto {
+    margin-bottom: 20px;
+}
+
+.barra-fundo {
+    margin-bottom: 20px;
 }
 
 .color-item,
@@ -297,6 +353,31 @@ h4 {
     width: 70%;
     font-size: 15px;
     color: #666666;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+button.close {
+    padding: 0;
+    background: #FFFFFF;
+    border: 0;
+    -webkit-appearance: none;
+    opacity: 1;
+    border-radius: 50%;
+    padding: 0 7px 4px 7px;
+    top: 17px;
+    position: absolute;
+    right: -13px;
+    z-index: 9999;
+}
+
+a.bt-exemplos {
+    float: right;
+    margin-right: 20px;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #666;
+    text-decoration: underline;
 }
 
 #font-size {
@@ -307,6 +388,8 @@ h4 {
     margin-left: 1%;
     float: right;
     color: #666666;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 .btn-apagar-box i {
@@ -319,6 +402,7 @@ h4 {
 
 .btn-apagar-box {
     cursor: pointer;
+    background:#CCCCCC;
 }
 
 .btn-limpar {
@@ -406,6 +490,26 @@ h4 {
     background-image: url("../img/fundos-thumbs/natural-thumb.jpg") !important;
 }
 
+.cerveja {
+    background-image: url("../img/fundos-thumbs/cerveja-thumb.jpg") !important;
+}
+
+.vinho {
+    background-image: url("../img/fundos-thumbs/vinho-thumb.jpg") !important;
+}
+
+.cafe {
+    background-image: url("../img/fundos-thumbs/cafe-thumb.jpg") !important;
+}
+
+.especial01 {
+    background-image: url("../img/fundos-thumbs/especial01-thumb.jpg") !important;
+}
+
+.especial02 {
+    background-image: url("../img/fundos-thumbs/especial02-thumb.jpg") !important;
+}
+
 .botoes span {
     font-size: 11px;
     line-height: 13px;
@@ -467,9 +571,23 @@ h4 {
     font-family: 'Shrikhand', cursive;
 }
 
+input:focus, textarea:focus {
+    border: 1px solid #f46943 !important;
+    box-shadow: 0 0 3px #f46943 !important;
+    -moz-box-shadow: 0 0 3px #f46943 !important;
+    -webkit-box-shadow: 0 0 3px #f46943 !important;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+    outline-offset: 0px !important;
+    outline: none !important;
+    }
+
 
 /* tooltips */
-
+.tooltip.show{
+    opacity: 1;
+}
 .close-tooltip {
     background: #333333;
     padding: 3px 7px;
@@ -496,7 +614,7 @@ h4 {
     margin-top: -10px;
     border-radius: 20px;
     font-size: 12px;
-    color: orangered;
+    color: #f46943;
 }
 
 
@@ -509,6 +627,7 @@ h4 {
     position: absolute;
     border: 1px dotted #999;
     cursor: move;
+    color: #999;
 }
 
 .ferramentas {
@@ -589,8 +708,9 @@ h4 {
 .descricao span.info {
     text-decoration: underline;
     font-weight: 300;
-    font-size: 14px;
     color: #666;
+    font-size: 11px;
+    margin-bottom: 5px;
 }
 
 .descricao span {
@@ -738,7 +858,7 @@ h4 {
 .pagamento {
     background: #FFFFFF;
     margin-top: 70px;
-    border-top: 1px solid orangered;
+    border-top: 1px solid #f46943;
     padding: 15px 50px;
     background-image: url("../img/rodape_papel.jpg");
     background-position: left bottom;
@@ -753,12 +873,12 @@ h4 {
 }
 
 .carrinho table {
-    border: 1px solid orangered;
+    border: 1px solid #f46943;
     margin-bottom: 20px;
 }
 
 .carrinho .cabecalho {
-    border-bottom: 1px solid orangered;
+    border-bottom: 1px solid #f46943;
 }
 
 .carrinho table tr {
@@ -766,7 +886,7 @@ h4 {
 }
 
 .carrinho table tr th {
-    color: orangered;
+    color: #f46943;
     padding: 5px 10px;
 }
 
@@ -825,7 +945,7 @@ h4 {
 
 .carrinho .col-produto a {
     text-decoration: underline;
-    color: orangered;
+    color: #f46943;
     display: block;
 }
 
@@ -858,7 +978,7 @@ h4 {
 }
 
 #calcula_frete {
-    background: orangered;
+    background: #f46943;
     border: none;
     font-size: 12px;
     color: #FFF;
@@ -913,7 +1033,7 @@ h4 {
 #frmCadastro input[type=email] {
     width: 100%;
     font-size: 13px;
-    color: #999;
+    color: #666;
 }
 
 #frmCadastro .form-group label {
@@ -941,10 +1061,10 @@ button.btn.btn-default.btn-voltar {
 
 #frmCadastro legend {
     margin: 30px 0 50px 0;
-    color: orangered;
+    color: #f46943;
     font-size: 22px;
     font-weight: 600;
-    border-bottom: 1px solid orangered;
+    border-bottom: 1px solid #f46943;
     padding-bottom: 5px;
 }
 
@@ -1019,13 +1139,19 @@ button.btn.btn-default.btn-voltar {
 }
 
 .nav-tabs .nav-item a.nav-link.active {
-    color: orangered;
+    color: #f46943;
     font-weight: bold;
+    border-top: 1px solid #f46943;
+    border-right: 1px solid #f46943;
+    border-left: 1px solid #f46943;
 }
 
 .nav-tabs .nav-item a.nav-link {
     color: #666;
     font-weight: bold;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
 }
 
 #bandeira {
@@ -1056,7 +1182,7 @@ button.btn.btn-default.btn-voltar {
     padding: .5rem .75rem;
     font-size: .8rem;
     line-height: 1.25;
-    color: orangered;
+    color: #f46943;
     background-color: #fff;
     background-image: none;
     background-clip: padding-box;
@@ -1190,4 +1316,88 @@ button.btn.btn-default.btn-voltar {
     display: block;
     border-radius: 0;
     font-weight: 600;
+}
+
+#teste{
+    display:none;
+    text-align:center;
+    margin:100px auto;
+    width:90%;
+    font-size:22px;
+}
+
+/* MODAIS */
+
+.modal-content{
+    border:0;
+}
+
+.modal p, .modal ul {
+    font-size: 12px;
+    color:#666;
+}
+
+.modal ul{
+    margin-left:13px;
+}
+
+.modal h3{
+    color:#666;
+    font-size:20px;
+}
+
+@media screen and (max-width: 1390px) {
+    header img {
+        width: 35%;
+    }
+    #quadro {
+        margin-top: 65px;
+        max-width: 356px;
+        padding-top: 113.1460%;
+        background-size: cover;
+    }
+
+    .ferramentas{
+        max-width: 356px;
+    }
+    a.bt-exemplos{
+        margin-right:0;
+    }
+    header {
+        margin: 20px 0 0 0;
+    }
+    h4 {
+        margin-bottom: 10px;
+    }
+    .barra-texto,
+    .barra-fundo {
+        margin-bottom: 10px;
+    }
+    .botoes button {
+        margin-top: 7px;
+    }
+    .botoes .ml-auto {
+        padding-top: 0 !important;
+    }
+    .tooltip-inner {
+        background-color: #ffcb05;
+        padding: 5px;
+        margin-top: -10px;
+        border-radius: 5px;
+        font-size: 12px;
+        line-height:14px;
+        color: #f46943;
+        box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .container {
+        display: none;
+    }
+
+    #teste{
+        display:block;
+    }
 }

@@ -4,7 +4,11 @@ require './../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 
 $carrinho = json_decode($_POST['carrinho'], true);
-//print_r($carrinho);
+$dadosUsuario = json_decode($_POST['dadosUsuario'], true);
+
+
+$nome_embalagem = $dadosUsuario['nome_embalagem'];
+
 
 $xml = $_POST['dados'];
 
@@ -71,6 +75,7 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     <strong>Nome: </strong>".$xml['sender']['name']."<br>
     <strong>E-mail: </strong>".$xml['sender']['email']."<br>
     <strong>Telefone: </strong>".$xml['sender']['phone']['areaCode']."-".$xml['sender']['phone']['number']."<br>
+    <strong>Nome na embalagem: </strong>".$nome_embalagem."<br>
     
     
     <br>
@@ -102,11 +107,11 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
 </body></html>";
 
 $mail->SetFrom('naoresponda@nacasadajoana.com.br', 'Na Casa Da Joana');
-$mail->AddReplyTo("contato@nacasadajoana.com.br", "Na Casa Da Joana");
+$mail->AddReplyTo("crieseuposter@nacasadajoana.com.br", "Na Casa Da Joana");
 $mail->AltBody = "Habilite a visualização em HTML!"; // optional, comment out and test
 $address = "michelmfreitas@gmail.com";
 $mail->AddAddress($address, "Michel");
-$mail->AddAddress("contato@nacasadajoana.com.br", "Na Casa Da Joana");
+$mail->AddAddress("crieseuposter@nacasadajoana.com.br", "Na Casa Da Joana");
 $mail->Subject = $assunto;
 $mail->MsgHTML($msg);
 $erro = 0;
@@ -196,11 +201,11 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     </body></html>";
 
 $mail->SetFrom('naoresponda@nacasadajoana.com.br', 'Na Casa Da Joana');
-$mail->AddReplyTo("contato@nacasadajoana.com.br", "Na Casa Da Joana");
+$mail->AddReplyTo("crieseuposter@nacasadajoana.com.br", "Na Casa Da Joana");
 $mail->AltBody = "Habilite a visualização em HTML!"; // optional, comment out and test
 $address = "michelmfreitas@gmail.com";
 $mail->AddAddress($address, "Michel");
-$mail->AddAddress($xml['sender']['email'], $xml['sender']['nome']);
+$mail->AddAddress($xml['sender']['email'], $xml['sender']['name']);
 $mail->Subject = $assunto;
 $mail->MsgHTML($msg);
 

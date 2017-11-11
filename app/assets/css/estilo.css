@@ -402,7 +402,7 @@ a.bt-exemplos {
 
 .btn-apagar-box {
     cursor: pointer;
-    background:#CCCCCC;
+    background: #CCCCCC;
 }
 
 .btn-limpar {
@@ -571,23 +571,35 @@ a.bt-exemplos {
     font-family: 'Shrikhand', cursive;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     border: 1px solid #f46943 !important;
-    box-shadow: 0 0 3px #f46943 !important;
+    /*box-shadow: 0 0 3px #f46943 !important;
     -moz-box-shadow: 0 0 3px #f46943 !important;
-    -webkit-box-shadow: 0 0 3px #f46943 !important;
-    }
-    
-    input:focus, textarea:focus, select:focus {
+    -webkit-box-shadow: 0 0 3px #f46943 !important;U*/
+}
+
+.btn-danger {
+    background: #f07053;
+    color: #FFF;
+    border-radius: 0;
+    border: 0;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
     outline-offset: 0px !important;
     outline: none !important;
-    }
+}
 
 
 /* tooltips */
-.tooltip.show{
+
+.tooltip.show {
     opacity: 1;
 }
+
 .close-tooltip {
     background: #333333;
     padding: 3px 7px;
@@ -1318,32 +1330,43 @@ button.btn.btn-default.btn-voltar {
     font-weight: 600;
 }
 
-#teste{
-    display:none;
-    text-align:center;
-    margin:100px auto;
-    width:90%;
-    font-size:22px;
+#teste {
+    display: none;
+    text-align: center;
+    margin: 100px auto;
+    width: 90%;
+    font-size: 22px;
 }
+
+#teste p {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 20px;
+    margin-bottom: 20px;
+    line-height: 32px;
+    color: #666;
+}
+
 
 /* MODAIS */
 
-.modal-content{
-    border:0;
+.modal-content {
+    border: 0;
 }
 
-.modal p, .modal ul {
+.modal p,
+.modal ul {
     font-size: 12px;
-    color:#666;
+    color: #666;
 }
 
-.modal ul{
-    margin-left:13px;
+.modal ul {
+    margin-left: 13px;
 }
 
-.modal h3{
-    color:#666;
-    font-size:20px;
+.modal h3 {
+    color: #666;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 1390px) {
@@ -1356,12 +1379,11 @@ button.btn.btn-default.btn-voltar {
         padding-top: 113.1460%;
         background-size: cover;
     }
-
-    .ferramentas{
+    .ferramentas {
         max-width: 356px;
     }
-    a.bt-exemplos{
-        margin-right:0;
+    a.bt-exemplos {
+        margin-right: 0;
     }
     header {
         margin: 20px 0 0 0;
@@ -1385,7 +1407,7 @@ button.btn.btn-default.btn-voltar {
         margin-top: -10px;
         border-radius: 5px;
         font-size: 12px;
-        line-height:14px;
+        line-height: 14px;
         color: #f46943;
         box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
         -webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
@@ -1396,8 +1418,7 @@ button.btn.btn-default.btn-voltar {
     .container {
         display: none;
     }
-
-    #teste{
-        display:block;
+    #teste {
+        display: block;
     }
 }

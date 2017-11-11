@@ -409,9 +409,10 @@ $xml= simplexml_load_string($xml);
                     success: function (data) {
                         //console.log(data);
                         dados = JSON.parse(data);
-                        console.log(dados);
+                        //console.log(dados);
                         window.open(dados.paymentLink, "_blank");
                         //geraPDF(dados_url.reference);
+                        processaCompra(data);
                         
                     },
                     error: function(erro){
@@ -485,7 +486,7 @@ $xml= simplexml_load_string($xml);
                 $.ajax({
                     url: "enviaEmail.php",
                     type: 'POST',
-                    data: { dados: dadosCompra, carrinho: localStorage.getItem('carrinho'), imagem: localStorage.getItem('imagem') },
+                    data: { dadosUsuario: localStorage.getItem('dadosUsuario'), dados: dadosCompra, carrinho: localStorage.getItem('carrinho'), imagem: localStorage.getItem('imagem') },
                     success: function (data) {
                         let res = JSON.parse(data);
                         if(res.error == 0 && res.code == 1){
@@ -679,6 +680,14 @@ $xml= simplexml_load_string($xml);
     </div>
 
     <br><br><br>
+
+    <div id="teste">
+        <img src="assets/img/logo.jpg" alt="Crie o seu poster" />
+        <br><br>
+        <p>Oi! Por enquanto você só pode criar o seu pôster personalizado usando um computador.</p>
+        <p>Acesse de um computador e crie quadros incríveis:<br>crieseuposter.nacasadajoana.com.br</p>
+        <br><br><a href='http://www.nacasadajoana.com.br' class='btn btn-danger'>Vá para o nosso site.</a>
+    </div>
 
     
 </body>

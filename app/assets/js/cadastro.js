@@ -43,6 +43,10 @@ $(document).ready(function() {
             alert("Há campos não preenchidos no formulário.");
             return false;
         }
+        if (validarCPF($("#cpf").val()) == false) {
+            alert("CPF Inválido. Confira os dados. =)")
+            return;
+        }
 
         var cadastro = {
             "nome": $("#nome").val(),
@@ -50,7 +54,7 @@ $(document).ready(function() {
             //"sexo": $(".sexo:checked").val(),
             "telefone": $("#telefone").val(),
             "cpf": $("#cpf").val(),
-            "destinatario": $("#destinatario").val(),
+            "nome_embalagem": $("#nome_embalagem").val(),
             "endereco": $("#endereco").val(),
             "numero": $("#numero").val(),
             "complemento": $("#complemento").val(),
@@ -69,4 +73,27 @@ $(document).ready(function() {
     });
 
 
+
+
 });
+
+function validarCPF(cpf) {
+    var soma = 0;
+    var resto;
+    var inputCPF = cpf.replace(/[^\d]+/g, '');
+
+    if (inputCPF == '00000000000') return false;
+    for (i = 1; i <= 9; i++) soma = soma + parseInt(inputCPF.substring(i - 1, i)) * (11 - i);
+    resto = (soma * 10) % 11;
+
+    if ((resto == 10) || (resto == 11)) resto = 0;
+    if (resto != parseInt(inputCPF.substring(9, 10))) return false;
+
+    soma = 0;
+    for (i = 1; i <= 10; i++) soma = soma + parseInt(inputCPF.substring(i - 1, i)) * (12 - i);
+    resto = (soma * 10) % 11;
+
+    if ((resto == 10) || (resto == 11)) resto = 0;
+    if (resto != parseInt(inputCPF.substring(10, 11))) return false;
+    return true;
+}

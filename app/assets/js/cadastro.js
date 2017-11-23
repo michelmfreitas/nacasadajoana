@@ -25,6 +25,11 @@ $(document).ready(function() {
     }
 
 
+    $(".btn-voltar").click(function() {
+        window.location.href = 'carrinho.html';
+    });
+
+
     $("#bt-cadastrar").click(function() {
 
         if (
@@ -44,9 +49,15 @@ $(document).ready(function() {
             return false;
         }
         if (validarCPF($("#cpf").val()) == false) {
-            alert("CPF Inválido. Confira os dados. =)")
+            alert("CPF Inválido. Confira os dados. =)");
             return;
         }
+        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        if (!reg.test($("#email").val())) {
+            alert("E-mail Inválido. Confira os dados. =)")
+            return;
+        }
+
 
         var cadastro = {
             "nome": $("#nome").val(),
@@ -96,4 +107,13 @@ function validarCPF(cpf) {
     if ((resto == 10) || (resto == 11)) resto = 0;
     if (resto != parseInt(inputCPF.substring(10, 11))) return false;
     return true;
+}
+
+function validaEmail(email) {
+    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+    if (reg.test(email)) {
+        return true;
+    } else {
+        return false;
+    }
 }

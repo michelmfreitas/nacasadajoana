@@ -37,9 +37,25 @@ $xml= simplexml_load_string($xml);
 <html lang="en">
 
 <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109849546-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109849546-1');
+</script>
+
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <title>Crie seu pôster - Na Casa Da Joana</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
@@ -63,11 +79,13 @@ $xml= simplexml_load_string($xml);
     <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 
     <script type="text/javascript">
-    console.log('<?php echo $xml->id; ?>');
-        PagSeguroDirectPayment.setSessionId('<?php echo $xml->id; ?>');
+        //console.log('<?php echo $xml->id; ?>');
+        
 
         $(document).ready(function(){
 
+            PagSeguroDirectPayment.setSessionId('<?php echo $xml->id; ?>');
+            
             var total = parseInt(localStorage.getItem('total')).toFixed(2);
             $(".total-a-pagar span").text("R$ "+total);
 
@@ -81,7 +99,6 @@ $xml= simplexml_load_string($xml);
                 PagSeguroDirectPayment.getPaymentMethods({
                     amount: total,
                     success: function(response) {
-                        //console.log("Pagamentos aceitos", response);
 
                     },
                     error: function(response) {
@@ -122,7 +139,7 @@ $xml= simplexml_load_string($xml);
                     });
                 }
             });
-
+            
             $("#parcelas").change(function(){
                 var total_compra = $(this).find(":selected").attr('data-item');
                 var parcelamento = {
@@ -139,8 +156,7 @@ $xml= simplexml_load_string($xml);
                 var tokenCC;
                 $("#loading").show();
                 
-                var hashComprador = PagSeguroDirectPayment.getSenderHash();
-                //console.log(hashComprador);
+                var hashComprador = PagSeguroDirectPayment.getSenderHash();                
 
                 if(
                     $("input#ncartao").val() == "" ||
@@ -159,6 +175,12 @@ $xml= simplexml_load_string($xml);
                     $("#loading").hide();
                     return false;
                 }
+                var espaco = $("input#titular_cartao").val().split(" ");
+                //console.log(espaco, espaco.length);
+                /*if(espaco.length <= 1){
+                    alert("Insira o seu nome completo.");
+                    return false;
+                }*/
                 
                 var param = {
                     cardNumber: $("input#ncartao").val().replace(/[^\d]+/g,''),
@@ -182,16 +204,9 @@ $xml= simplexml_load_string($xml);
                         comprador.data_nascimento = $("#data_nascimento").val();
                         comprador.bandeira = $(".bandeira").val();
 
-                        //let url = `https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/email=michelmfreitas@gmail.com&token=705A5625690E4CAA91E6AFB178B047EA&paymentMode=default&paymentMethod=creditCard&receiverEmail=michelmfreitas@gmail.com&currency=BRL&extraAmount=0.00&itemId1=0001&itemDescription1=Quadros personalizados Na Casa Da Joana&itemAmount1=${total}&itemQuantity1=1&reference=NACASADAJOANA&senderName=${comprador.nome}&senderCPF=${comprador.cpf}&senderAreaCode=99&senderPhone=99999999&senderEmail=${comprador.email}&senderHash=${hashComprador}&shippingAddressStreet=${comprador.endereco}&shippingAddressNumber=${comprador.numero}&shippingAddressComplement=${comprador.complemento}&shippingAddressDistrict=${comprador.bairro}&shippingAddressPostalCode=${comprador.cep}&shippingAddressCity=${comprador.cidade}&shippingAddressState=${comprador.uf}&shippingAddressCountry=BRA&creditCardToken=${tokenCC}&installmentQuantity=${parcelamento.n_parcelas}&installmentValue=${parcelamento.valor}&noInterestInstallmentQuantity=5&creditCardHolderName=${$("input#titular_cartao").val()}&creditCardHolderCPF=${comprador.cpf}\&creditCardHolderBirthDate=${comprador.data_nascimento}&creditCardHolderAreaCode=${comprador.ddd}&creditCardHolderPhone=${comprador.phone}&billingAddressStreet=${comprador.endereco}&billingAddressNumber=${comprador.numero}&billingAddressComplement=${comprador.endereco}&billingAddressDistrict=${comprador.bairro}&billingAddressPostalCode=${comprador.cep}&billingAddressCity=${comprador.cidade}&billingAddressState=${comprador.uf}&billingAddressCountry=BRA`;
-                        
-                                //console.log(encodeURIComponent(url));
-
                         var dados_url = {
-                            //email: 'michelmfreitas@gmail.com',
-                            //token: '705A5625690E4CAA91E6AFB178B047EA',
                             email: 'crieseuposter@gmail.com',
                             token: '843ACE66F983489FA42D993221B78D27', //produção
-                            //token: '854191901CF44E568067826327063C41',
                             paymentMode: 'default',
                             paymentMethod: 'creditCard',
                             currency: 'BRL',
@@ -206,7 +221,6 @@ $xml= simplexml_load_string($xml);
                             senderAreaCode: `${comprador.ddd}`,
                             senderPhone:`${comprador.phone}`,
                             senderEmail:`${comprador.email}`,
-                            //senderEmail:`c47323087046186728590@sandbox.pagseguro.com.br`,
                             senderHash:`${hashComprador}`,
                             shippingAddressStreet:`${comprador.endereco}`,
                             shippingAddressNumber:`${comprador.numero}`,
@@ -235,19 +249,31 @@ $xml= simplexml_load_string($xml);
                             billingAddressCountry:'BRA'
                         }
 
+                        //console.log(dados_url);
+
                         $.ajax({
                             url: "api.php",
                             type: 'POST',
                             data: { dados: dados_url },
                             success: function (data) {
-                                
+                                //console.log("success", data);
+                                var retorno = JSON.parse(data);
+                                //console.log(retorno, retorno.error);
+                                if(retorno.error){
+                                    var erro = retorno.error['code'];
+                                    var msgErro = retorno.error['message'];
+                                    alert(`Erro PagSeguro (${erro}): ${msgErro}`);
+                                    return false;
+                                }else{
+                                    processaCompra(data); 
+                                }
                             },
                             error: function(erro){
                                 alert("Cannot get data");
                                 //console.log(erro);
                             },
                             complete: function(data){
-                                processaCompra(data); 
+                                //console.log("complete", data);  
                             }
                         });
 
@@ -260,7 +286,9 @@ $xml= simplexml_load_string($xml);
                     error: function(response) {
                         //console.log("TOKEN error", response);
                         alert("Dados do cartão de crédito inválidos.");
+                        $("#loading").hide();
                         return false;
+
                         
                     },
                     complete: function(response) {
@@ -420,8 +448,7 @@ $xml= simplexml_load_string($xml);
                         //console.log(erro);
                     },
                     complete: function(data) {
-                        console.log('acabou o processamento', data);
-                        $("#loading").hide();
+                        //$("#loading").hide();
                         /*dados = JSON.parse(data);
                         console.log('complete...');
                         processaCompra(data);
@@ -459,22 +486,35 @@ $xml= simplexml_load_string($xml);
                     maxInstallmentNoInterest: 5,
                     success: function(response) {
                         let parcelas = response.installments[bandeira];
-                        let options = "";
+                        let options = "<option>Selecione -></option>";
                         for(var i=0; i < parcelas.length; i++){
                             let prestacao = (parcelas[i].installmentAmount).toFixed(2);
                             let total = (parcelas[i].totalAmount).toFixed(2);
                             let juros = parcelas[i].interestFree == true ? "sem" : "com";
-                            options += `<option value='${parcelas[i].quantity}x de R$ ${prestacao} = R$ ${total} ${juros} juros' data-item='${total}' data-parcelas="${parcelas[i].quantity}" data-valor="${prestacao}">${parcelas[i].quantity}x de R$ ${prestacao} = R$ ${total} ${juros} juros</option>`;
+                            
+                            if( parcelas[i].quantity == 1 ){
+                                var selected = "selected";
+                                var parcelamento = {
+                                    n_parcelas: 1,
+                                    valor: total
+                                };            
+                                localStorage.setItem('parcelamento', JSON.stringify(parcelamento));
+                            }else{
+                                var selected = '';
+                            }
+
+                            options += `<option value='${parcelas[i].quantity}x de R$ ${prestacao} = R$ ${total} ${juros} juros' data-item='${total}' data-parcelas="${parcelas[i].quantity}" data-valor="${prestacao}" ${selected}>${parcelas[i].quantity}x de R$ ${prestacao} = R$ ${total} ${juros} juros</option>`;
                         }
                         $("#parcelas").html(options);
                     },
                     error: function(response) {
-                        //tratamento do erro
+                        //console.log(response);
                     },
                     complete: function(response) {
                         $("#parcelas").removeAttr("disabled");
                         $("#parcelas").css('color', 'orangered');
                         $("#parcelas").css('background-color', '#FFF');
+                        $("#parcelas option:first").attr('selected', 'selected');
                     }
                 });
             }
@@ -512,6 +552,14 @@ $xml= simplexml_load_string($xml);
 <body>
 
     <div id="loading"><img src="assets/img/Spinner.gif" style="width:64px; height: auto;"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 logo">
+                <img src="assets/img/logo.jpg">
+            </div>
+        </div>
+    </div>
 
     <div class="container pagamento">
 
@@ -619,11 +667,11 @@ $xml= simplexml_load_string($xml);
                             </div>
                             
                             
-                            <div class="form-group radio-group">
+                            <!--<div class="form-group radio-group">
                                 <label for="fatura">Fatura do cartão</label><br>
                                 <input type="radio" name="fatura" class="fatura" checked value="Está no mesmo endereço" /> Está no mesmo endereço de entrega do pedido.<br>
                                 <input type="radio" name="fatura" class="fatura" value="Está em outro endereço" /> Está em outro endereço.
-                            </div>
+                            </div>-->
 
                             <div class="form-group">
                                 <label for="parcelas">Parcelas</label>
@@ -655,22 +703,24 @@ $xml= simplexml_load_string($xml);
             </div>
 
             <div role="tabpanel" class="tab-pane fade" id="boleto">
-                <p>Nossos pagamentos são processados com segurança pelo Pagseguro.</p>
-                <p>O Boleto bancário será exibido na próxima tela após você clicar no botão
-                    "Enviar pedido" e poderá ser impresso para pagamento em qualquer agência
-                    bancária, ou ter o número anotado para pagamento pelo telefone ou internet.</p>
+                <p>O Boleto Bancário poderá ser pago em qualquer agência ou internet banking.</p>
+                
+                <p>Após a confirmação automática do pagamento, nós daremos início à produção do seu pôster.</p>
                 <br>
-                <p style='color:orangered;'>Total a pagar: R$ <span class='valor-boleto'></span></p>
-                <br>
-                <p><button class='btn btn-success btn-pagar-boleto'>Enviar Pedido</button></p>
+                <div class='quadro-boleto'>
+                    Valor: R$ <span class='valor-boleto'></span>
+                    <button class='btn btn-success btn-pagar-boleto'>Gerar boleto</button>
+                </div>
             </div>
 
             <div role="tabpanel" class="tab-pane fade" id="debito">
                 <p>As instruções para pagamento serão apresentadas na tela seguinte, após o envio do pedido.</p>
                 <br>
-                <p style='color:orangered;'>Total a pagar: R$ <span class='valor-boleto'></span></p>
+                <div class='quadro-boleto'>
+                    Valor: R$ <span class='valor-boleto'></span>
+                    <button class='btn btn-success btn-pagar-deposito-em-conta'>CONTINUAR</button>
+                </div>
                 <br>
-                <p><button class='btn btn-success btn-pagar-deposito-em-conta'>Enviar Pedido</button></p>
             </div>
 
         </div>

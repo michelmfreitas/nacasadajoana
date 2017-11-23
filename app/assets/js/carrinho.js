@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
+    sessionStorage.removeItem('quadro');
     jQuery.support.cors = true;
+
+    var widthBt = $("#cep").width();
+    $("#calcula_frete").css('width', widthBt + 22);
 
     $('#cep').mask('00000-000');
 
@@ -10,7 +14,7 @@ $(document).ready(function() {
     var total_carrinho = 0;
 
     for (var i = 0; i < items_carrinho.length; i++) {
-        let valor = (items_carrinho[i].item == "Sem Moldura") ? 62 : 150;
+        let valor = (items_carrinho[i].item == "Sem Moldura") ? 49 : 120;
         total = items_carrinho[i].quantidade * valor;
         linhas += `<tr class="produto" data-linha="${i}">
                             <td>
@@ -56,6 +60,7 @@ $(document).ready(function() {
         let quantidade = parseInt($(this).val());
         let item = parseInt($(this).attr('data-description'));
 
+
         //pega valor unitario e multiplica pelo valor
         let valor = $(".valor-unitario").eq(item).text();
         valor = parseInt(valor.replace(/[^\d]+/g, ''));
@@ -73,7 +78,7 @@ $(document).ready(function() {
             //array_total.push(totais.eq(i).text().replace(/[^\d]+/g, '') / 100);
             valor_total += totais.eq(i).text().replace(/[^\d]+/g, '') / 100;
         }
-        console.log(valor_total);
+        //console.log(valor_total);
         $(".total-carrinho td span").html(valor_total);
     });
 
@@ -162,7 +167,7 @@ $(document).ready(function() {
                     altura = altura * caixas;
                 }
 
-                console.log(`https://correios-server.herokuapp.com/frete/prazo?nCdServico=${sedex},${pac}&sCepOrigem=29050224&sCepDestino=${cep}&nVlPeso=${peso}&nCdFormato=1&nVlComprimento=35&nVlAltura=${altura}&nVlLargura=25&nVlDiametro=25&nVlValorDeclarado=0`, )
+                //console.log(`https://correios-server.herokuapp.com/frete/prazo?nCdServico=${sedex},${pac}&sCepOrigem=29050224&sCepDestino=${cep}&nVlPeso=${peso}&nCdFormato=1&nVlComprimento=35&nVlAltura=${altura}&nVlLargura=25&nVlDiametro=25&nVlValorDeclarado=0`, )
 
                 $.ajax({
                     type: "GET",
@@ -275,10 +280,10 @@ $(document).ready(function() {
         }
 
         let moldura = localStorage.getItem('moldura');
-        if (moldura < 1) {
+        /*if (moldura < 1) {
             alert("Não há moldura selecionada.");
             return false;
-        }
+        }*/
 
         let total = localStorage.getItem('total');
         if (total.length < 1) {

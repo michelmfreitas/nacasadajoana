@@ -2,9 +2,28 @@
 <html lang="en">
 
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109849546-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109849546-1');
+    </script>
+
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <title>Crie seu pôster - Na Casa Da Joana</title>
 
     <link href="https://fonts.googleapis.com/css?family=Asap:500,600,700|Amatic+SC|Arbutus+Slab|Archivo+Black|Boogaloo|Bowlby+One+SC|Bree+Serif|Capriola|Caveat|Pacifico|Shrikhand" rel="stylesheet">
 
@@ -12,7 +31,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/estilo.css" type="text/css">
 
-    <!--<script src="https://use.fontawesome.com/f4499b2d17.js"></script>-->
     <script src="assets/js/font-awesome.js"></script>
     <link rel="stylesheet" href="assets/css/font-awesome.css" type="text/css">
 
@@ -27,11 +45,9 @@
     <script src="https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/jquery.ui.rotatable.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" type="text/css">
 
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <script src="assets/js/lib.js"></script>
 
-    <!--<script type="text/javascript" src="https://cdnjs.com/libraries/popper.js" async></script>
-    <script type="text/javascript" src="https://cdnjs.com/libraries/tooltip.js" async></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.20/fabric.min.js" async></script>-->
 </head>
 
 <body>
@@ -76,7 +92,8 @@
 
                     <div class="col-md-4">
                         <select name="fonte" id="fonte">
-                            <option value="font-1" id="font-1" checked>Amatic SC</option>
+                            <option value="font-0" id="font-0" checked>Asap</option>
+                            <option value="font-1" id="font-1">Amatic SC</option>
                             <option value="font-2" id="font-2">Arbutus Slab</option>
                             <option value="font-3" id="font-3">Archivo Black</option>
                             <option value="font-4" id="font-4">Boogaloo</option>

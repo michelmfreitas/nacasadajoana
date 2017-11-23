@@ -154,6 +154,23 @@ img {
     color: #666;
 }
 
+.ui-icon,
+.ui-widget-content .ui-icon {
+    background: url("../img/ferramenta-amplia.png") !important;
+    width: 16px !important;
+    height: 16px !important;
+    background-size: contain;
+}
+
+.ui-resizable-se {
+    right: -16px !important;
+    bottom: -16px !important;
+}
+
+.ui-icon-gripsmall-diagonal-se {
+    background-position: 0 0px !important;
+}
+
 
 /* paleta grayscale */
 
@@ -531,6 +548,10 @@ a.bt-exemplos {
     text-transform: uppercase;
 }
 
+#font-0 {
+    font-family: 'Asap', sans-serif;
+}
+
 #font-1 {
     font-family: 'Amatic SC', cursive;
 }
@@ -640,6 +661,7 @@ select:focus {
     border: 1px dotted #999;
     cursor: move;
     color: #999;
+    position: absolute;
 }
 
 .ferramentas {
@@ -663,7 +685,8 @@ select:focus {
 }*/
 
 .ui-rotatable-handle {
-    background: url("https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/rotate.png");
+    background: url("../img/ferramentas-giro.png");
+    /*background: url("https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/rotate.png");*/
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 16px;
@@ -709,6 +732,12 @@ select:focus {
 .texto-parabens {
     margin-left: 45px;
     margin-top: -40px;
+    color: #999;
+}
+
+.texto-parabens strong {
+    margin-bottom: 10px;
+    display: block;
 }
 
 .descricao {
@@ -869,12 +898,16 @@ select:focus {
 .cadastro,
 .pagamento {
     background: #FFFFFF;
-    margin-top: 70px;
+    margin-top: 30px;
     border-top: 1px solid #f46943;
     padding: 15px 50px;
     background-image: url("../img/rodape_papel.jpg");
     background-position: left bottom;
     background-repeat: repeat-x;
+}
+
+.logo {
+    margin-top: 30px;
 }
 
 .carrinho h3,
@@ -887,6 +920,10 @@ select:focus {
 .carrinho table {
     border: 1px solid #f46943;
     margin-bottom: 20px;
+}
+
+.carrinho h3 {
+    color: #666;
 }
 
 .carrinho .cabecalho {
@@ -1010,7 +1047,7 @@ select:focus {
 
 .cadastro {
     width: 755px !important;
-    margin: 70px auto 0 auto;
+    margin: 30px auto 0 auto;
     background-image: url("../img/rodape_papel.jpg");
     background-position: left bottom;
     background-repeat: repeat-x;
@@ -1136,6 +1173,22 @@ button.btn.btn-default.btn-voltar {
     font-weight: 700;
 }
 
+.quadro-boleto {
+    background: #faffbd;
+    padding: 20px 30px;
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+    font-weight: 700;
+    color: #666;
+}
+
+.quadro-boleto .btn-pagar-boleto,
+.quadro-boleto .btn-pagar-deposito-em-conta {
+    float: right;
+    margin-top: -7px;
+}
+
 .pagseguro {
     margin-top: 30px;
 }
@@ -1241,6 +1294,7 @@ button.btn.btn-default.btn-voltar {
 #boleto,
 #debito {
     padding: 20px 100px 50px 100px;
+    text-align: center;
 }
 
 #boleto p,
@@ -1302,12 +1356,13 @@ button.btn.btn-default.btn-voltar {
     transform: skew(5deg) rotate(5deg);
 }
 
-.obrigado h6 {
+.obrigado p {
     position: relative;
     top: -55px;
     left: 155px;
     color: #666;
-    font-weight: 600;
+    font-size: 19px;
+    font-weight: 300;
 }
 
 .box-share {
@@ -1323,7 +1378,7 @@ button.btn.btn-default.btn-voltar {
 
 #bt-recomecar {
     width: 33.33%;
-    margin: 70px auto 0 auto;
+    margin: 40px auto 0 auto;
     text-transform: uppercase;
     display: block;
     border-radius: 0;
@@ -1339,11 +1394,11 @@ button.btn.btn-default.btn-voltar {
 }
 
 #teste p {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 14px;
     margin-bottom: 20px;
-    line-height: 32px;
+    line-height: 20px;
     color: #666;
 }
 

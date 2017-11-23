@@ -3,19 +3,36 @@
 
 <head>
 
-    <!-- You can use Open Graph tags to customize link previews.
-    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-    <meta property="og:url" content="http://www.ipixels.com.br/nacasadajoana/index.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Personalize o seu quadro Na Casa Da Joana" />
-    <meta property="og:description" content="Quer personalizar seu quadro? Clique aqui." />
-    <meta property="og:image" content="" id="meta-fb" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109849546-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109849546-1');
+    </script>
+
+
 
     <title>Personalize o seu quadro Na Casa Da Joana</title>
+    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a06fa1f2bb39f0012e27d0e&product=inline-share-buttons"></script>
+
+    <meta property="og:url" content="http://crieseuposter.nacasadajoana.com.br" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="Crie seu pôster personalizado" />
+    <meta property="og:description" content="Crie seu pôster personalizado Na Casa Da Joana" />
+    <meta property="og:image" content="" />
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <title>Crie seu pôster - Na Casa Da Joana</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
 
@@ -29,16 +46,6 @@
 
 
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip('show');
-            var poster = localStorage.getItem('imagem');
-            $("#meta-fb").attr("content", poster);
-            $("#img-poster").attr('src', poster);
-
-
-        });
-    </script>
 
     <style>
         .tooltip {
@@ -57,7 +64,6 @@
 <body>
 
 
-
     <div class="container obrigado">
 
         <div class="row">
@@ -66,20 +72,22 @@
             </div>
             <div class='col-sm-8'>
                 <img src="assets/img/legal.jpg" alt="Legal" title="Legal" />
-                <h6>Logo o seu poster vai chegar na sua casa. ;)</h6>
+                <p>Confira em seu e-mail a aprovação da sua compra<br> via Cartão de Crédito ou, o link do Boleto Bancário.</p>
+                <p>A produção do seu pôster começa logo após<br> a confirmação do pagamento. :)</p>
 
-                <div class="box-share row">
+                <!--<div class="box-share row">
 
 
                     <div class='col-sm-6'>
                         <span data-toggle="tooltip" title="NOVO!"></span> Agora você pode compartilhar a sua criação com os amigos:
                     </div>
-                    <div class='col-sm-6' style='padding:0; margin-top:15px; text-align:center;'>
-                        <a href='http://www.facebook.com/sharer/sharer.php?u=http://www.nacasadajoana.com.br/personalizado/index.html' target="_blank" class="btn btn-primary">Compartilhar Facebook</a>
-                    </div>
-                </div>
+                    <div class='col-sm-6 compartilhar' style='padding:0; margin-top:15px; text-align:center;'>
+                        <div class="addthis_inline_share_toolbox"></div>
+                        <div class="addthis_sharing_toolbox" data="" id="share" data-url="http://crieseuposter.nacasadajoana.com.br" data-title="Crie seu Pôster" data-description="THE DESCRIPTION" data-media=""></div>
+                        </div>
+                </div>-->
 
-                <a href='index.html' class='btn btn-success' id='bt-recomecar'>Criar outro pôster</a>
+                <a href='crie.html' class='btn btn-success' id='bt-recomecar'>Criar outro pôster</a>
             </div>
         </div>
 
@@ -92,7 +100,18 @@
 
     <br><br><br>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip('show');
+            var poster = localStorage.getItem('imagem');
+            $("#share").attr("data", poster);
+            $("#img-poster").attr('src', poster);
+            sessionStorage.removeItem('quadro');
+        });
+    </script>
 
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59f23cb352ba3ae6"></script>
 
 </body>
 

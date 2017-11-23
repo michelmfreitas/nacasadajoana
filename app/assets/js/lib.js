@@ -1,14 +1,18 @@
 $(document).ready(function() {
 
+    var quadroEditado = sessionStorage.getItem('quadro');
+    if (quadroEditado) {
+        //console.log(quadroEditado);
+        $("#conteudo-quadro").html(quadroEditado);
+    }
+
+
+
     function mantemProporcaoQuadro() {
         var larguraQuadro = $("#quadro").width();
         console.log(larguraQuadro);
         var alturaQuadro = (larguraQuadro * 494) / 350;
         $("#quadro").css("height", alturaQuadro.toFixed(2) + "px");
-
-
-
-
     }
 
     //mantemProporcaoQuadro();
@@ -20,7 +24,7 @@ $(document).ready(function() {
     alvoAtivo = 1;
 
     $("#bt-voltar").on("click", function() {
-        console.log('voltando...');
+        //console.log('voltando...');
         window.location.href = history.back(-1);
     });
 
@@ -32,7 +36,12 @@ $(document).ready(function() {
         var ne = nw.clone();
         var se = nw.clone();
         // Assign Rotatable
-        $('.box').resizable().rotatable();
+        $('.box').resizable({
+            //autoHide: true
+        });
+        $('.box').rotatable({
+            //autoHide: true
+        });
         // Assign coordinate classes to handles
         $('.box div.ui-rotatable-handle').addClass("ui-rotatable-handle-sw");
         nw.addClass("ui-rotatable-handle-nw");
@@ -49,6 +58,7 @@ $(document).ready(function() {
     $(".color-item").click(function() {
         let cor = $(this).attr("data-color");
         $("#quadro").removeAttr('class');
+        $("#quadro").removeAttr('style');
         $("#quadro").addClass(cor);
     });
 
@@ -61,7 +71,7 @@ $(document).ready(function() {
 
     $(".text-item").click(function() {
         //console.log(alvoAtivo);
-        console.log('clicou');
+        //console.log('clicou');
         $(".texto").removeAttr('style');
         let text = $(this).attr("data-color");
         let cor = $("." + text).css('background-color');
@@ -87,12 +97,14 @@ $(document).ready(function() {
             return false;
         } else {
             let quadro = $("#conteudo-quadro").html();
-
+            sessionStorage.setItem('quadro', quadro);
             //retirar as bordas dos boxes, trocar imagem por alta resolução do fundo
             $("#quadro").css('box-shadow', 'none');
             var bgQuadro = $("#quadro").css('background-image');
             //bgQuadro = bgQuadro.replace("/fundos-tela/", "/fundos-exportacao/");
             $("#quadro").css('background-image', bgQuadro);
+            $(".ui-icon").hide();
+            $(".ui-rotatable-handle").hide();
 
             $(".content").css('border', 'none');
             $(".box").css('border', 'none');
@@ -126,7 +138,8 @@ $(document).ready(function() {
     });
 
     $(".btn-limpar").on("click", function() {
-        window.location.href = 'index.html';
+        sessionStorage.removeItem('quadro');
+        window.location.href = 'crie.html';
     });
 
     $("#fonte").on("change", function() {
@@ -139,7 +152,6 @@ $(document).ready(function() {
         let tamanho = [
             "1rem", "1.4rem", "1.8rem", "2rem", "2.5rem", "3rem", "4rem", "5rem"
         ];
-        //console.log($(this).val(), alvoAtivo);
         $(".box[data-target='" + alvoAtivo + "']").css("font-size", tamanho[$(this).val()]);
         $(".box[data-target='" + alvoAtivo + "']").css("line-height", tamanho[$(this).val()]);
     });
@@ -173,15 +185,27 @@ $(document).ready(function() {
         $("#novo-texto").val('');
     });
 
-    $(".content").on("click", ".box", function() {
-        //$(this).trigger("dblclick");
+    $(".content").on("click", ".box", function(event) {
         var obj = $(this).attr('data-target');
         alvoAtivo = obj;
+
+        //esconde bordas
         $(".box").css('border-color', "#FFF");
         $(this).css('border-color', "#999");
-        console.log("Alvo ativo: " + alvoAtivo);
-        console.log("ObJ: " + obj);
-        $(this).resizable().rotatable();
+
+        //esconde icones
+        $(".ui-icon").hide();
+        $(this).find(".ui-icon").show();
+        $(".ui-rotatable-handle").hide();
+        $(this).find(".ui-rotatable-handle").show();
+
+        $(this).resizable({
+            //autoHide: true
+        });
+        $(this).rotatable({
+            //autoHide: true
+        });
+        console.log($(this), obj, alvoAtivo);
     });
 
 
@@ -192,11 +216,12 @@ $(document).ready(function() {
         $('#font-size option:eq(3)').attr('selected', 'selected');
         let novoBox = $(".box").length + 1;
         alvoAtivo++;
+        console.log(alvoAtivo, novoBox);
         $('#exampleModal').modal('show');
     });
 
     $(".btn-apagar-box").on("click", function() {
-        console.log("apagar elemento: " + alvoAtivo);
+        //console.log("apagar elemento: " + alvoAtivo);
         $(`.box[data-target=${alvoAtivo}]`).remove();
     });
 
@@ -206,20 +231,19 @@ $(document).ready(function() {
 
     function inserirNovoBox(texto) {
         var lastBox = $(".box").attr("data-target");
-        console.log(lastBox);
     }
 
-    $('[data-toggle="tooltip"]').tooltip('show');
-    /*$('[data-toggle="tooltip"]').on('show.bs.tooltip', function () {
+    /*$('[data-toggle="tooltip"]').tooltip('show');
+    $('[data-toggle="tooltip"]').on('show.bs.tooltip', function() {
         $(this).tooltip('dispose');
     });*/
-    
+
 
     $('.box').draggable({
         cancel: ".ui-rotatable-handle",
         containment: "parent",
         stop: function() {
-            console.log('evento após o draggable');
+            //console.log('evento após o draggable');
         }
     });
 

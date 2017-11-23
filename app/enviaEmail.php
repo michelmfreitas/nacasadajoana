@@ -76,6 +76,7 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     <strong>E-mail: </strong>".$xml['sender']['email']."<br>
     <strong>Telefone: </strong>".$xml['sender']['phone']['areaCode']."-".$xml['sender']['phone']['number']."<br>
     <strong>Nome na embalagem: </strong>".$nome_embalagem."<br>
+    <strong>Como nos conheceu: </strong>".$dadosUsuario['ficou_sabendo']."<br>
     
     
     <br>
@@ -107,11 +108,11 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
 </body></html>";
 
 $mail->SetFrom('naoresponda@nacasadajoana.com.br', 'Na Casa Da Joana');
-$mail->AddReplyTo("crieseuposter@nacasadajoana.com.br", "Na Casa Da Joana");
+$mail->AddReplyTo("crieseuposter@gmail.com", "Na Casa Da Joana");
 $mail->AltBody = "Habilite a visualização em HTML!"; // optional, comment out and test
 $address = "michelmfreitas@gmail.com";
 $mail->AddAddress($address, "Michel");
-$mail->AddAddress("crieseuposter@nacasadajoana.com.br", "Na Casa Da Joana");
+$mail->AddAddress("crieseuposter@gmail.com", "Na Casa Da Joana");
 $mail->Subject = $assunto;
 $mail->MsgHTML($msg);
 $erro = 0;
@@ -151,30 +152,28 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     <div style='width:600px;'>
     <img src='http://nacasadajoana.com.br/site/emails_do_site/topo.gif'><br><br>
     </p>Oi ".$xml['sender']['name'].",<br><br>
-    Ficamos muito felizes em receber o seu pedido <i><u>".$xml['reference']."</i></u> :)<br><br>
-    Aqui estão algumas informações importantes:<br><br>
+    Ficamos muito felizes em receber o seu pedido <i><u>".$xml['reference']."</i></u> :)<br><br>";
+    
+        if($xml['paymentMethod']['type'] == 2){
+            $msg .= "<br><a href='".$xml['paymentLink']."' target='_blank' style='padding:15px 20px; width:80%; margin:0 auto; background-color:#f1f1f1; text-align:center; color: blue; text-decoration:underline;font-weight:600;'>Link do boleto</a><br><br><br>";
+        }
+        
+    $msg .= "Aqui estão algumas informações importantes:<br><br>
     Produzimos nossos produtos um a um, por isso seguimos os seguintes prazos de produção:<br><br>
     
-    - Pôster sem moldura e outros produtos - prazo máximo de 7 dias úteis<br>
+    - Pôster sem moldura - prazo máximo de 7 dias úteis<br>
     - Pôster com moldura - prazo máximo de 10 dias úteis<br><br>
     
-    O prazo começa a ser contado a partir da aprovação do seu pagamento pelo PagSeguro ou PayPal
-    ou, ainda, pela verificação do seu dep&oacute;sito bancário.<br><br>
-    Após esse prazo, o seu pedido será enviado pelos Correios e você; receberá automaticamente o 
-    código de rastreio para acompanhá-lo. O prazo de entrega dos Correios varia de acordo com 
-    a modalidade escolhida:<br><br>
+    O prazo começa a ser contado a partir da aprovação do seu pagamento pelo PagSeguro.<br><br>
+    
+    Após esse prazo, o seu pedido será enviado pelos Correios. O prazo de entrega dos Correios
+    varia de acordo com a modalidade escolhida:<br><br>
     
     - Encomendas SEDEX - até 5 dias úteis<br>
     - Encomendas PAC - até 12 dias úteis<br><br>
     
-    Para falar com a gente ou acompanhar o andamento do seu pedido, acesse o menu 'Minha Conta'.
-    <br><br><br>";
-
-    if($metodoPagto == "Boleto Bancário"){
-        $msg .= "<a href='".$xml['paymentLink']."' target='_blank'>Link do boleto</a><br><br><br>";
-    }
-    
-    $msg .= "Abra um sorriso Na Casa da Joana :)<br><br><br><br>
+    <br>
+    Abra um sorriso Na Casa da Joana :)<br><br><br><br>
 
     <table border='0' cellpadding='0' cellspacing='0' height='0' width='600' style='border-top:10px solid orangered; background-color:#f7f7ef;'>
     <tbody>
@@ -201,7 +200,7 @@ $msg = "<html><head><meta charset='utf-8'></head><body>
     </body></html>";
 
 $mail->SetFrom('naoresponda@nacasadajoana.com.br', 'Na Casa Da Joana');
-$mail->AddReplyTo("crieseuposter@nacasadajoana.com.br", "Na Casa Da Joana");
+$mail->AddReplyTo("crieseuposter@gmail.com", "Na Casa Da Joana");
 $mail->AltBody = "Habilite a visualização em HTML!"; // optional, comment out and test
 $address = "michelmfreitas@gmail.com";
 $mail->AddAddress($address, "Michel");

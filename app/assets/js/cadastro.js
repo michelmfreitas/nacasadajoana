@@ -21,7 +21,13 @@ $(document).ready(function() {
         $("#cidade").val(dados.localidade);
     }
     if (dados.uf) {
-        $("#uf").val(dados.uf);
+        //$("#uf").val(dados.uf);
+        let opt = $("#uf option");
+        for (var i = 0; i < opt.length; i++) {
+            if (dados.uf == opt[i].value) {
+                $(`#uf option[value=${dados.uf}]`).attr("selected", "selected");
+            }
+        }
     }
 
 
